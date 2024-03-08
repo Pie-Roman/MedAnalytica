@@ -68,52 +68,52 @@ fun AnalysisGraphView_Preview() {
             AnalysisGraphPointVo(
                 creationDateTime = "25.01.24",
                 index = 0f,
-                value = 87.3f,
+                value = 29.015984196295115f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "01.02.24",
                 index = 1f,
-                value = 85.0f,
+                value = 29.50865727482566f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "14.02.24",
                 index = 2f,
-                value = 90.1f,
+                value = 29.442542479068127f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "25.02.24",
                 index = 3f,
-                value = 84.2f,
+                value = 27.93975153381725f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "03.03.24",
                 index = 4f,
-                value = 86.3f,
+                value = 29.161417639230358f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "25.01.24",
                 index = 5f,
-                value = 87.3f,
+                value = 30.563884907956215f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "01.02.24",
                 index = 6f,
-                value = 85.0f,
+                value = 34.44097615853632f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "14.02.24",
                 index = 7f,
-                value = 90.1f,
+                value = 30.987861593356058f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "25.02.24",
                 index = 8f,
-                value = 84.2f,
+                value = 29.523395305956754f,
             ),
             AnalysisGraphPointVo(
                 creationDateTime = "03.03.24",
                 index = 9f,
-                value = 86.3f,
+                value = 31.56601234680911f,
             ),
         )
     )
