@@ -4,6 +4,8 @@ import ru.pyroman.medanalytica.feature.vo.AnalysisGraphListVo
 
 sealed class AnalysisGraphState {
 
+    data object Idle : AnalysisGraphState()
+
     data object Loading : AnalysisGraphState()
 
     data class Success(

@@ -63,6 +63,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.uitooling)
     implementation(libs.androidx.compose.uitoolingpreview)
 
+    // Dagger
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 

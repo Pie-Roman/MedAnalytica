@@ -16,10 +16,10 @@ internal class AnalysisGraphViewModel internal constructor(
     private val analysisGraphRepository: AnalysisGraphRepository,
 ) : ViewModel() {
 
-    private val _viewState = MutableStateFlow<AnalysisGraphState>(AnalysisGraphState.Loading)
+    private val _viewState = MutableStateFlow<AnalysisGraphState>(AnalysisGraphState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun getGraphList() = viewModelScope.launch {
+    fun fetchGraphList() = viewModelScope.launch {
         _viewState.value = AnalysisGraphState.Loading
         val graphList = withContext(Dispatchers.IO) {
              analysisGraphRepository.getGraphList()

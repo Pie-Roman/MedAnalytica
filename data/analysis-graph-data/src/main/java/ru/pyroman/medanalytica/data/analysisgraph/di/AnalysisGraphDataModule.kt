@@ -39,9 +39,7 @@ interface AnalysisGraphDataModule {
         internal fun provideAnalysisGraphNetworkDataSource(
             api: AnalysisGraphNetworkApi
         ): AnalysisGraphNetworkDataSource {
-            return AnalysisGraphNetworkDataSource(
-                api = api,
-            )
+            return AnalysisGraphNetworkDataSource()
         }
 
         @Provides
@@ -83,10 +81,14 @@ interface AnalysisGraphDataModule {
 
         @Provides
         internal fun provideAnalysisGraphRepositoryImpl(
+            networkDataSource: AnalysisGraphNetworkDataSource,
+            networkMapper: AnalysisGraphNetworkMapper,
             cacheDataSource: AnalysisGraphCacheDataSource,
             cacheMapper: AnalysisGraphCacheMapper,
         ): AnalysisGraphRepositoryImpl {
             return AnalysisGraphRepositoryImpl(
+                networkDataSource = networkDataSource,
+                networkMapper = networkMapper,
                 cacheDataSource = cacheDataSource,
                 cacheMapper = cacheMapper,
             )

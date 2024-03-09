@@ -22,14 +22,21 @@ fun AnalysisGraphScreenView(
 
     AnalysisGraphListView(
         state = state,
+        onIdle = {
+            viewModel.fetchGraphList()
+        },
     )
 }
 
 @Composable
 fun AnalysisGraphListView(
-    state: AnalysisGraphState
+    state: AnalysisGraphState,
+    onIdle: () -> Unit,
 ) {
     when (state) {
+        is AnalysisGraphState.Idle ->
+            onIdle()
+
         is AnalysisGraphState.Loading ->
             AnalysisGraphListLoadingView()
 
