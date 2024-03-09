@@ -5,12 +5,12 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.pyroman.medanalytica.data.analysisgraph.cache.dto.AnalysisGraphPointCacheDto
+import javax.inject.Inject
 
 @ProvidedTypeConverter
-internal class AnalysisGraphCacheTypeConverter(
-    private val gson: Gson,
-) {
+internal class AnalysisGraphCacheTypeConverter @Inject constructor() {
 
+    private val gson = Gson()
     private val typeToken = object : TypeToken<List<AnalysisGraphPointCacheDto>>() {}.type
 
     @TypeConverter

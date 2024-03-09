@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -35,4 +36,7 @@ dependencies {
     implementation(libs.androidx.compose.uitoolingpreview)
 
     implementation(libs.vico.compose)
+
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

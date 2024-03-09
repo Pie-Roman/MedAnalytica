@@ -6,8 +6,9 @@ import ru.pyroman.medanalytica.data.analysisgraph.cache.dto.AnalysisGraphPointCa
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphData
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphList
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphPoint
+import javax.inject.Inject
 
-internal class AnalysisGraphCacheMapper {
+internal class AnalysisGraphCacheMapper @Inject constructor() {
 
     fun map(dto: AnalysisGraphListCacheDto): AnalysisGraphList {
         val graphs = dto.map { graphDataDto ->

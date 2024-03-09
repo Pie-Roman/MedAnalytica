@@ -4,8 +4,9 @@ import ru.pyroman.medanalytica.data.analysisgraph.cache.AnalysisGraphCacheDataSo
 import ru.pyroman.medanalytica.data.analysisgraph.cache.AnalysisGraphCacheMapper
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphList
 import ru.pyroman.medanalytica.domain.analysisgraph.repository.AnalysisGraphRepository
+import javax.inject.Inject
 
-internal class AnalysisGraphRepositoryImpl(
+class AnalysisGraphRepositoryImpl @Inject internal constructor(
     private val cacheDataSource: AnalysisGraphCacheDataSource,
     private val cacheMapper: AnalysisGraphCacheMapper,
 ) : AnalysisGraphRepository {

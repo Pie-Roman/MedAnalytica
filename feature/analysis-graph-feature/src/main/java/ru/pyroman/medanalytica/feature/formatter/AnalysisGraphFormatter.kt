@@ -7,7 +7,7 @@ import ru.pyroman.medanalytica.feature.vo.AnalysisGraphDataVo
 import ru.pyroman.medanalytica.feature.vo.AnalysisGraphListVo
 import ru.pyroman.medanalytica.feature.vo.AnalysisGraphPointVo
 
-class AnalysisGraphFormatter {
+internal class AnalysisGraphFormatter {
 
     fun format(model: AnalysisGraphList): AnalysisGraphListVo {
         val graphs = model.graphs.map(::formatGraphData)

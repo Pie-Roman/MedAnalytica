@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -28,4 +29,8 @@ dependencies {
 
     // Coroutines
     implementation(libs.kotlinx.corountines.android)
+
+    // Dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

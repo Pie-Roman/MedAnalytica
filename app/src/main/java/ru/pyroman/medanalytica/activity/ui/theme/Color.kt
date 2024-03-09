@@ -1,4 +1,4 @@
-package ru.pyroman.medanalytica.ui.theme
+package ru.pyroman.medanalytica.activity.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

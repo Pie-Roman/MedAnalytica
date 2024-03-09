@@ -6,8 +6,9 @@ import ru.pyroman.medanalytica.data.analysisgraph.network.dto.AnalysisGraphPoint
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphData
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphList
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphPoint
+import javax.inject.Inject
 
-internal class AnalysisGraphNetworkMapper {
+internal class AnalysisGraphNetworkMapper @Inject constructor() {
 
     fun map(dto: AnalysisGraphListNetworkDto): AnalysisGraphList {
         val graphs = requireNotNull(dto).mapNotNull { graphDataDto ->

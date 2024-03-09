@@ -9,11 +9,15 @@ import ru.pyroman.medanalytica.feature.view.graphlist.AnalysisGraphListErrorView
 import ru.pyroman.medanalytica.feature.view.graphlist.AnalysisGraphListLoadingView
 import ru.pyroman.medanalytica.feature.view.graphlist.AnalysisGraphListSuccessView
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModel
+import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
 
 @Composable
 fun AnalysisGraphScreenView(
-    viewModel: AnalysisGraphViewModel = viewModel(),
+    viewModelFactory: AnalysisGraphViewModelFactory,
 ) {
+    val viewModel: AnalysisGraphViewModel = viewModel(
+        factory = viewModelFactory,
+    )
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
     AnalysisGraphListView(
