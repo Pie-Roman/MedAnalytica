@@ -23,7 +23,9 @@ include(":feature:analysis-graph-feature")
 
 // Domain modules
 include(":domain:analysis-graph-domain")
+include(":domain:uid-domain")
 
 // Data modules
 include(":data:analysis-graph-data")
+include(":data:uid-data")
  
