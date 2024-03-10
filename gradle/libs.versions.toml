@@ -9,11 +9,15 @@ room = "2.6.1"
 vico = "1.14.0"
 retrofit = "2.9.0"
 kotlinx = "1.7.3"
+dagger = "2.51"
 
 [libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "compose" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 androidx-compose-uitooling = { module = "androidx.compose.ui:ui-tooling"}
@@ -30,8 +34,12 @@ retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version
 
 kotlinx-corountines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx"}
 
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
