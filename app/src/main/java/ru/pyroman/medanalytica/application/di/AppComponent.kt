@@ -5,7 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import ru.pyroman.medanalytica.activity.di.MainActivityComponent
 
-@Component
+@Component(modules = [AppModule::class])
 @ApplicationScope
 interface AppComponent {
 
