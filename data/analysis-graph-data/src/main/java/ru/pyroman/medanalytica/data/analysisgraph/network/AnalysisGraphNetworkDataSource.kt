@@ -56,6 +56,198 @@ internal class AnalysisGraphNetworkDataSource @Inject constructor() {
                         value = 31.56601234680911f,
                     ),
                 )
+            ),
+            AnalysisGraphDataNetworkDto(
+                type = "MCI",
+                std = null,
+                min = null,
+                lastUpdatedAt = null,
+                values = listOf(
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 29.015984196295115f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 29.50865727482566f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 29.442542479068127f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 27.93975153381725f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 29.161417639230358f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 30.563884907956215f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 34.44097615853632f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 30.987861593356058f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 29.523395305956754f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 31.56601234680911f,
+                    ),
+                )
+            ),
+            AnalysisGraphDataNetworkDto(
+                type = "MCJ",
+                std = null,
+                min = null,
+                lastUpdatedAt = null,
+                values = listOf(
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 29.015984196295115f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 29.50865727482566f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 29.442542479068127f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 27.93975153381725f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 29.161417639230358f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 30.563884907956215f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 34.44097615853632f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 30.987861593356058f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 29.523395305956754f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 31.56601234680911f,
+                    ),
+                )
+            ),
+            AnalysisGraphDataNetworkDto(
+                type = "MCK",
+                std = null,
+                min = null,
+                lastUpdatedAt = null,
+                values = listOf(
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 29.015984196295115f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 29.50865727482566f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 29.442542479068127f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 27.93975153381725f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 29.161417639230358f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 30.563884907956215f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 34.44097615853632f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 30.987861593356058f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 29.523395305956754f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 31.56601234680911f,
+                    ),
+                )
+            ),
+            AnalysisGraphDataNetworkDto(
+                type = "MCL",
+                std = null,
+                min = null,
+                lastUpdatedAt = null,
+                values = listOf(
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 29.015984196295115f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 29.50865727482566f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 29.442542479068127f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 27.93975153381725f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 29.161417639230358f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.01.24",
+                        value = 30.563884907956215f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "01.02.24",
+                        value = 34.44097615853632f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "14.02.24",
+                        value = 30.987861593356058f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "25.02.24",
+                        value = 29.523395305956754f,
+                    ),
+                    AnalysisGraphPointNetworkDto(
+                        creationDateTime = "03.03.24",
+                        value = 31.56601234680911f,
+                    ),
+                )
             )
         )
     }

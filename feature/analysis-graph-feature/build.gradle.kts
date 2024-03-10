@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.foundation)
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.uitooling)

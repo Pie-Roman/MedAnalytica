@@ -1,7 +1,19 @@
 package ru.pyroman.medanalytica.feature.view.graph
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.axis.vertical.rememberStartAxis
@@ -22,41 +34,61 @@ import ru.pyroman.medanalytica.feature.vo.AnalysisGraphPointVo
 @Composable
 fun AnalysisGraphView(
     vo: AnalysisGraphDataVo,
+    modifier: Modifier = Modifier,
 ) {
     val spacing = 70.dp
     val padding = spacing / 2
 
-    Chart(
-        chart = lineChart(
-            lines = listOf(
-                LineChart.LineSpec(
-                    pointConnector = DefaultPointConnector(
-                        cubicStrength = 0f,
+    Column(
+        modifier = modifier
+            .clip(shape = RoundedCornerShape(8.dp))
+            .background(color = Color.LightGray)
+            .padding(vertical = 20.dp, horizontal = 16.dp)
+    ) {
+        Text(
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(bottom = 20.dp),
+            text = vo.analysisType,
+            fontSize = TextUnit(20f, TextUnitType.Sp),
+            fontWeight = FontWeight.Medium,
+        )
+        Chart(
+            modifier = Modifier
+                .background(color = Color.White)
+                .padding(all = 8.dp),
+            chart = lineChart(
+                lines = listOf(
+                    LineChart.LineSpec(
+                        lineColor = android.graphics.Color.BLUE,
+                        pointConnector = DefaultPointConnector(
+                            cubicStrength = 0f,
+                        )
                     )
+                ),
+                spacing = spacing,
+                axisValuesOverrider = AxisValuesOverrider.adaptiveYValues(
+                    yFraction = 1.01f,
+                    round = true,
                 )
             ),
-            spacing = spacing,
-            axisValuesOverrider = AxisValuesOverrider.adaptiveYValues(
-                yFraction = 1.01f,
-                round = true,
-            )
-        ),
-        chartModelProducer = ChartEntryModelProducer(vo.points),
-        startAxis = rememberStartAxis(),
-        bottomAxis = rememberBottomAxis(
-            valueFormatter = { value, _ ->
-                vo.points[value.toInt()].creationDateTime
-            },
-            sizeConstraint = Axis.SizeConstraint.TextWidth("DD.MM.YYYY")
-        ),
-        chartScrollSpec = rememberChartScrollSpec(
-            initialScroll = InitialScroll.End,
-        ),
-        horizontalLayout = HorizontalLayout.fullWidth(
-            scalableStartPadding = padding,
-            scalableEndPadding = padding,
-        ),
-    )
+            chartModelProducer = ChartEntryModelProducer(vo.points),
+            startAxis = rememberStartAxis(),
+            bottomAxis = rememberBottomAxis(
+                valueFormatter = { value, _ ->
+                    vo.points[value.toInt()].creationDateTime
+                },
+                sizeConstraint = Axis.SizeConstraint.TextWidth("DD.MM.YYYY")
+            ),
+            chartScrollSpec = rememberChartScrollSpec(
+                initialScroll = InitialScroll.End,
+            ),
+            horizontalLayout = HorizontalLayout.fullWidth(
+                scalableStartPadding = padding,
+                scalableEndPadding = padding,
+            ),
+        )
+    }
 }
 
 @Preview(showBackground = true)

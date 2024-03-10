@@ -11,13 +11,9 @@ import javax.inject.Inject
 internal class AnalysisGraphNetworkMapper @Inject constructor() {
 
     fun map(dto: AnalysisGraphListNetworkDto): AnalysisGraphList {
-        val graphs = requireNotNull(dto).mapNotNull { graphDataDto ->
+       return requireNotNull(dto).mapNotNull { graphDataDto ->
             graphDataDto?.let { mapAnalysisGraphData(it) }
         }
-
-        return AnalysisGraphList(
-            graphs = graphs,
-        )
     }
 
     private fun mapAnalysisGraphData(dto: AnalysisGraphDataNetworkDto): AnalysisGraphData {

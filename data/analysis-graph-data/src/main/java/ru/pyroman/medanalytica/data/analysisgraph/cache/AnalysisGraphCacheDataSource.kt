@@ -12,6 +12,10 @@ internal class AnalysisGraphCacheDataSource @Inject constructor(
         return dao.getGraphList()
     }
 
+    suspend fun searchGraphs(searchText: String): AnalysisGraphListCacheDto {
+        return dao.searchGraphs(searchText)
+    }
+
     suspend fun setGraphList(graphList: AnalysisGraphListCacheDto) {
         dao.deleteGraphList()
         dao.insertGraphList(graphList)
