@@ -16,6 +16,8 @@ dependencyResolutionManagement {
 rootProject.name = "MedAnalytica"
 include(":app")
 
+include(":base:uikit")
+
 // Feature modules
 include(":feature:analysis-graph-feature")
 

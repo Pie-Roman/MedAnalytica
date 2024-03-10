@@ -53,6 +53,7 @@ android {
 
 dependencies {
 
+    implementation(project(":base:uikit"))
     implementation(project(":feature:analysis-graph-feature"))
 
     // Compose
@@ -64,6 +65,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.uitooling)
     implementation(libs.androidx.compose.uitoolingpreview)
+    implementation(libs.androidx.activity.compose)
 
     // Dagger
     implementation(libs.dagger)
@@ -78,8 +80,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
-
-    implementation("androidx.activity:activity-compose:1.8.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

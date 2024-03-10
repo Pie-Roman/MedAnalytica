@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import ru.pyroman.medanalytica.activity.di.MainActivityComponent
 import ru.pyroman.medanalytica.feature.view.AnalysisGraphScreenView
-import ru.pyroman.medanalytica.activity.ui.theme.MedAnalyticaTheme
+import ru.pyroman.medanalytica.ui.theme.MedAnalyticaTheme
 import ru.pyroman.medanalytica.application.MedanalyticaApplication
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package ru.pyroman.medanalytica.activity.ui.theme
+package ru.pyroman.medanalytica.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -13,7 +13,9 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.colorResource
 import androidx.core.view.WindowCompat
+import ru.pyroman.medanalytica.base.uikit.R
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -55,9 +57,10 @@ fun MedAnalyticaTheme(
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
+        val statusBarColor = colorResource(R.color.lightBlue).toArgb()
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = statusBarColor
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

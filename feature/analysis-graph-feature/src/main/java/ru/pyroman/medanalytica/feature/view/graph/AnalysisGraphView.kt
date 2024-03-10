@@ -10,6 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -30,6 +32,7 @@ import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
 import com.patrykandpatrick.vico.core.scroll.InitialScroll
 import ru.pyroman.medanalytica.feature.vo.AnalysisGraphDataVo
 import ru.pyroman.medanalytica.feature.vo.AnalysisGraphPointVo
+import ru.pyroman.medanalytica.base.uikit.R as UiKitR
 
 @Composable
 fun AnalysisGraphView(
@@ -42,7 +45,7 @@ fun AnalysisGraphView(
     Column(
         modifier = modifier
             .clip(shape = RoundedCornerShape(8.dp))
-            .background(color = Color.LightGray)
+            .background(color = colorResource(UiKitR.color.lightGray))
             .padding(vertical = 20.dp, horizontal = 16.dp)
     ) {
         Text(
@@ -60,7 +63,7 @@ fun AnalysisGraphView(
             chart = lineChart(
                 lines = listOf(
                     LineChart.LineSpec(
-                        lineColor = android.graphics.Color.BLUE,
+                        lineColor = colorResource(UiKitR.color.lightBlue).toArgb(),
                         pointConnector = DefaultPointConnector(
                             cubicStrength = 0f,
                         )

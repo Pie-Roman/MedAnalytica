@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.pyroman.medanalytica.feature.analysisgraph"
+    namespace = "ru.pyroman.medanalytica.base.uikit"
     compileSdk = 34
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -23,22 +23,13 @@ android {
 }
 
 dependencies {
-
-    api(project(":base:uikit"))
-    api(project(":domain:analysis-graph-domain"))
-    api(project(":data:analysis-graph-data"))
-
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // Compose
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.foundation)
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.uitooling)
     implementation(libs.androidx.compose.uitoolingpreview)
-
-    implementation(libs.vico.compose)
-
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
+    implementation(libs.androidx.activity.compose)
 }
