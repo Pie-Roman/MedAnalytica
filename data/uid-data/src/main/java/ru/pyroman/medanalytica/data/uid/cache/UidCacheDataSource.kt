@@ -24,14 +24,14 @@ internal class UidCacheDataSource @Inject constructor(
     suspend fun setUid(uid: Uid) {
         withContext(Dispatchers.Main) {
             sharedPreferences.edit()
-                .putString(UID_KEY, uid)
+                .putString(UID_KEY, uid.toString())
                 .apply()
         }
     }
 
     suspend fun getUid(): Uid? {
         return withContext(Dispatchers.Main) {
-            sharedPreferences.getString(UID_KEY, null)
+            sharedPreferences.getString(UID_KEY, null)?.toLongOrNull()
         }
     }
 

@@ -55,6 +55,7 @@ dependencies {
 
     implementation(project(":base:uikit"))
     implementation(project(":feature:analysis-graph-feature"))
+    implementation(project(":feature:post-analysis-feature"))
 
     // Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)

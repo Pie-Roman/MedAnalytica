@@ -1,8 +1,6 @@
 package ru.pyroman.medanalytica.data.analysisgraph.network
 
 import ru.pyroman.medanalytica.data.analysisgraph.network.api.AnalysisGraphNetworkApi
-import ru.pyroman.medanalytica.data.analysisgraph.network.dto.AnalysisGraphDataNetworkDto
-import ru.pyroman.medanalytica.data.analysisgraph.network.dto.AnalysisGraphPointNetworkDto
 import ru.pyroman.medanalytica.data.analysisgraph.network.dto.AnalysisGraphListNetworkDto
 import ru.pyroman.medanalytica.domain.uid.model.Uid
 import javax.inject.Inject

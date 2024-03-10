@@ -12,12 +12,17 @@ import ru.pyroman.medanalytica.feature.view.AnalysisGraphScreenView
 import ru.pyroman.medanalytica.ui.theme.MedAnalyticaTheme
 import ru.pyroman.medanalytica.application.MedanalyticaApplication
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
+import ru.pyroman.postanalysis.feature.view.PostAnalysisScreenView
+import ru.pyroman.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var analysisGraphViewModelFactory: AnalysisGraphViewModelFactory
+
+    @Inject
+    lateinit var postAnalysisViewModelFactory: PostAnalysisViewModelFactory
 
     private lateinit var activityComponent: MainActivityComponent
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +40,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   AnalysisGraphScreenView(
-                       viewModelFactory = analysisGraphViewModelFactory,
+                   PostAnalysisScreenView(
+                       viewModelFactory = postAnalysisViewModelFactory,
                    )
                 }
             }
