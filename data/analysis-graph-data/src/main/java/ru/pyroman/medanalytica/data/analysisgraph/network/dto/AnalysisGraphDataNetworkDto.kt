@@ -7,5 +7,5 @@ internal data class AnalysisGraphDataNetworkDto(
     @SerializedName("std") val std: Double?,
     @SerializedName("min") val min: Double?,
     @SerializedName("lastUpdatedAt") val lastUpdatedAt: Long?,
-    @SerializedName("values") val values: List<AnalysisGraphPointNetworkDto?>?,
+    @SerializedName("valuesWithCreationDates") val values: List<AnalysisGraphPointNetworkDto?>?,
 )

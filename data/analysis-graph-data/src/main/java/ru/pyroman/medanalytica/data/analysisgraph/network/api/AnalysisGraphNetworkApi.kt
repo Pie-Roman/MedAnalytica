@@ -14,7 +14,7 @@ internal interface AnalysisGraphNetworkApi {
     ): AnalysisGraphListNetworkDto
 
     companion object {
-        private const val BASE_URL = "https://smth"
+        private const val BASE_URL = "http://51.250.107.247:8080"
 
         fun build() = Retrofit.Builder()
             .baseUrl(BASE_URL)

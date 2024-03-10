@@ -1,3 +1,8 @@
 package ru.pyroman.medanalytica.data.analysisgraph.network.dto
 
-internal typealias AnalysisGraphListNetworkDto = List<AnalysisGraphDataNetworkDto?>?
+import com.google.gson.annotations.SerializedName
+
+internal data class AnalysisGraphListNetworkDto(
+    @SerializedName("bloodTestsByTypeDtos")
+    val graphs: List<AnalysisGraphDataNetworkDto?>?
+)

@@ -12,10 +12,10 @@ internal class UidCacheDataSource @Inject constructor(
     applicationContext: Context,
 ) {
 
-    private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+    private val masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     private val sharedPreferences = EncryptedSharedPreferences.create(
         FILE_NAME,
-        masterKeyAlias,
+        masterKey,
         applicationContext,
         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM,

@@ -16,6 +16,8 @@ android {
 
 dependencies {
     api(project(":domain:analysis-graph-domain"))
+    api(project(":domain:uid-domain"))
+    api(project(":data:uid-data"))
 
     // Retrofit
     implementation(libs.retrofit.retrofit)
