@@ -2,6 +2,7 @@ package ru.pyroman.postanalysis.feature.viewmodel
 
 import android.app.Application
 import android.net.Uri
+import android.util.Base64
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -12,8 +13,7 @@ import kotlinx.coroutines.withContext
 import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisData
 import ru.pyroman.medanalytica.domain.postanalysis.repository.PostAnalysisRepository
 import ru.pyroman.postanalysis.feature.state.PostAnalysisState
-import java.io.File
-import java.io.FileOutputStream
+import java.io.BufferedInputStream
 
 internal class PostAnalysisViewModel(
     application: Application,
@@ -47,21 +47,15 @@ internal class PostAnalysisViewModel(
         _viewState.emit(newState)
     }
 
-    private suspend fun readFile(uri: Uri): File {
+    private suspend fun readFile(uri: Uri): String {
         return withContext(Dispatchers.Main) {
             val context = getApplication<Application>().applicationContext
-            val file = File(context.cacheDir, "file")
             context.contentResolver.openInputStream(uri)?.use { inputStream ->
-                FileOutputStream(file).use { outputStream ->
-                    val buffer = ByteArray(1024)
-                    var size: Int
-                    while (inputStream.read(buffer).also { size = it } != -1) {
-                        outputStream.write(buffer, 0, size)
-                    }
+                BufferedInputStream(inputStream).use { bufferedIs ->
+                    val bytes = bufferedIs.readBytes()
+                    Base64.encodeToString(bytes, Base64.NO_WRAP)
                 }
-            }
-
-            file
+            }.orEmpty()
         }
     }
 }

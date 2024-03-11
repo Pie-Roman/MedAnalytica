@@ -17,10 +17,10 @@ class PostAnalysisRepositoryImpl @Inject internal constructor(
     override suspend fun postAnalysis(data: PostAnalysisData): PostAnalysisResult {
         return try {
             val uid = requireNotNull(uidRepository.getUid())
-            val requestBody = networkMapper.map(data)
+            val dto = networkMapper.map(data)
             networkDataSource.postAnalysis(
                 uid = uid,
-                requestBody = requestBody,
+                postAnalysis = dto,
             )
             PostAnalysisResult.SUCCESS
         } catch (error: Throwable) {
