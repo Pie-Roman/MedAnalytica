@@ -14,10 +14,10 @@ class PostAnalysisNetworkMapper {
         val file = data.file
         val fileName = file.name
         val fileRequestHeaders = Headers.of(
-            "Content-Disposition", "form-data; name=\"upload\"; filename=${fileName}"
+            "Content-Disposition", "form-data; name=\"file\"; filename=${fileName}"
         )
         val fileRequestBody = RequestBody.create(
-            MediaType.parse(""),
+            MediaType.parse("application/pdf"),
             file,
         )
 

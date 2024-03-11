@@ -67,6 +67,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.uitooling)
     implementation(libs.androidx.compose.uitoolingpreview)
     implementation(libs.androidx.activity.compose)
+    androidTestImplementation(libs.androidx.activity.compose)
 
     // Dagger
     implementation(libs.dagger)
