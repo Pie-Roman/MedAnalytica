@@ -17,11 +17,13 @@
             <option value="$PROJECT_DIR$/common/navigation/api" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/analysis-graph-data" />
+            <option value="$PROJECT_DIR$/data/login-data" />
             <option value="$PROJECT_DIR$/data/post-analysis-data" />
             <option value="$PROJECT_DIR$/data/token-data" />
             <option value="$PROJECT_DIR$/data/uid-data" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/analysis-graph-domain" />
+            <option value="$PROJECT_DIR$/domain/login-domain" />
             <option value="$PROJECT_DIR$/domain/post-analysis-domain" />
             <option value="$PROJECT_DIR$/domain/token-domain" />
             <option value="$PROJECT_DIR$/domain/uid-domain" />
