@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.pyroman.medanalytica.feature.analysisgraph"
+    namespace = "ru.pyroman.medanalytica.common.navigation"
     compileSdk = 34
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -25,10 +25,10 @@ android {
 dependencies {
 
     api(project(":base:uikit"))
-    api(project(":domain:analysis-graph-domain"))
-    api(project(":data:analysis-graph-data"))
-
     api(project(":common:navigation:api"))
+
+    api(project(":feature:analysis-graph-feature"))
+    api(project(":feature:post-analysis-feature"))
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
@@ -40,8 +40,6 @@ dependencies {
     implementation(libs.androidx.compose.uitoolingpreview)
 
     implementation(libs.androidx.navigation.compose)
-
-    implementation(libs.vico.compose)
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
