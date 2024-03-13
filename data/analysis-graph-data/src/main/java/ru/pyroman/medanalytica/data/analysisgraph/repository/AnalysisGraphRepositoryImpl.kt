@@ -8,11 +8,13 @@ import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphList
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphListData
 import ru.pyroman.medanalytica.domain.analysisgraph.model.AnalysisGraphListWarning
 import ru.pyroman.medanalytica.domain.analysisgraph.repository.AnalysisGraphRepository
+import ru.pyroman.medanalytica.domain.token.repository.TokenRepository
 import ru.pyroman.medanalytica.domain.uid.repository.UidRepository
 import javax.inject.Inject
 
 class AnalysisGraphRepositoryImpl @Inject internal constructor(
     private val uidRepository: UidRepository,
+    private val tokenRepository: TokenRepository,
     private val networkDataSource: AnalysisGraphNetworkDataSource,
     private val networkMapper: AnalysisGraphNetworkMapper,
     private val cacheDataSource: AnalysisGraphCacheDataSource,
@@ -46,7 +48,8 @@ class AnalysisGraphRepositoryImpl @Inject internal constructor(
 
     private suspend fun getGraphListFromNetwork(): AnalysisGraphList {
         val uid = requireNotNull(uidRepository.getUid())
-        val graphListDto = networkDataSource.getGraphList(uid)
+        val token = requireNotNull(tokenRepository.getToken())
+        val graphListDto = networkDataSource.getGraphList(uid, token)
         return networkMapper.map(graphListDto)
     }
 

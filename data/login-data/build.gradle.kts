@@ -18,6 +18,7 @@ android {
 
 dependencies {
     api(project(":domain:uid-domain"))
+    api(project(":domain:token-domain"))
     api(project(":domain:login-domain"))
 
     // Retrofit

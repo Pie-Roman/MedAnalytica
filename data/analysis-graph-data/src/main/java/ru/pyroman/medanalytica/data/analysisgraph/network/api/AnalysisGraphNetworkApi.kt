@@ -3,8 +3,10 @@ package ru.pyroman.medanalytica.data.analysisgraph.network.api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 import ru.pyroman.medanalytica.data.analysisgraph.network.dto.AnalysisGraphListNetworkDto
+import ru.pyroman.medanalytica.domain.token.model.Token
 import ru.pyroman.medanalytica.domain.uid.model.Uid
 
 internal interface AnalysisGraphNetworkApi {
@@ -12,6 +14,7 @@ internal interface AnalysisGraphNetworkApi {
     @GET("bloodTest/bloodTests/all/{uid}")
     suspend fun getGraphList(
         @Path("uid") uid: Uid,
+        @Header("token") token: Token,
     ): AnalysisGraphListNetworkDto
 
     companion object {
