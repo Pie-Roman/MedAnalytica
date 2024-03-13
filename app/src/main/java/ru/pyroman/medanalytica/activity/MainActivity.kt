@@ -8,11 +8,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import ru.pyroman.medanalytica.activity.di.MainActivityComponent
-import ru.pyroman.medanalytica.feature.view.AnalysisGraphScreenView
-import ru.pyroman.medanalytica.ui.theme.MedAnalyticaTheme
 import ru.pyroman.medanalytica.application.MedanalyticaApplication
+import ru.pyroman.medanalytica.common.navigation.Navigation
+import ru.pyroman.medanalytica.common.navigation.ViewModelsFactory
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
-import ru.pyroman.postanalysis.feature.view.PostAnalysisScreenView
+import ru.pyroman.medanalytica.ui.theme.MedAnalyticaTheme
 import ru.pyroman.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
 import javax.inject.Inject
 
@@ -40,8 +40,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   PostAnalysisScreenView(
-                       viewModelFactory = postAnalysisViewModelFactory,
+                   Navigation(
+                       viewModelsFactory = ViewModelsFactory(
+                           analysisGraphViewModelFactory = analysisGraphViewModelFactory,
+                           postAnalysisViewModelFactory = postAnalysisViewModelFactory,
+                       )
                    )
                 }
             }

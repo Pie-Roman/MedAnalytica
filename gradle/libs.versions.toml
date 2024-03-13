@@ -5,6 +5,7 @@ ksp = "1.9.0-1.0.13"
 lifecycle = "2.7.0"
 compose = "1.6.2"
 compose-bom = "2024.02.01"
+navigation = "2.7.7"
 security = "1.0.0"
 room = "2.6.1"
 vico = "1.14.0"
@@ -24,6 +25,8 @@ androidx-compose-foundation = { module = "androidx.compose.foundation:foundation
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 androidx-compose-uitooling = { module = "androidx.compose.ui:ui-tooling"}
 androidx-compose-uitoolingpreview = { module = "androidx.compose.ui:ui-tooling-preview" }
+
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "security" }
 

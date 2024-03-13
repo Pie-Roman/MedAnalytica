@@ -54,8 +54,13 @@ android {
 dependencies {
 
     implementation(project(":base:uikit"))
+    api(project(":common:navigation"))
     implementation(project(":feature:analysis-graph-feature"))
     implementation(project(":feature:post-analysis-feature"))
+
+    implementation(project(":data:analysis-graph-data"))
+    implementation(project(":data:post-analysis-data"))
+    implementation(project(":data:uid-data"))
 
     // Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
