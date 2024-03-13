@@ -61,6 +61,7 @@ dependencies {
     implementation(project(":data:analysis-graph-data"))
     implementation(project(":data:post-analysis-data"))
     implementation(project(":data:uid-data"))
+    implementation(project(":data:token-data"))
 
     // Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
