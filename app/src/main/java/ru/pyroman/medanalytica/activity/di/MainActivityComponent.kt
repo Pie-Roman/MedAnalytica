@@ -3,6 +3,7 @@ package ru.pyroman.medanalytica.activity.di
 import dagger.Subcomponent
 import ru.pyroman.medanalytica.activity.MainActivity
 import ru.pyroman.medanalytica.data.analysisgraph.di.AnalysisGraphDataModule
+import ru.pyroman.medanalytica.data.postanalysis.di.PostAnalysisDataModule
 import ru.pyroman.medanalytica.data.uid.di.UidDataModule
 import ru.pyroman.medanalytica.feature.di.AnalysisGraphFeatureModule
 
@@ -13,6 +14,7 @@ import ru.pyroman.medanalytica.feature.di.AnalysisGraphFeatureModule
     // Data modules
     UidDataModule::class,
     AnalysisGraphDataModule::class,
+    PostAnalysisDataModule::class,
 ])
 @MainActivityScope
 interface MainActivityComponent {

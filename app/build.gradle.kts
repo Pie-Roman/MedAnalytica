@@ -55,6 +55,7 @@ dependencies {
 
     implementation(project(":base:uikit"))
     implementation(project(":feature:analysis-graph-feature"))
+    implementation(project(":feature:post-analysis-feature"))
 
     // Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -66,6 +67,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.uitooling)
     implementation(libs.androidx.compose.uitoolingpreview)
     implementation(libs.androidx.activity.compose)
+    androidTestImplementation(libs.androidx.activity.compose)
 
     // Dagger
     implementation(libs.dagger)

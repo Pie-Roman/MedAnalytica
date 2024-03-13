@@ -8,6 +8,7 @@ compose-bom = "2024.02.01"
 security = "1.0.0"
 room = "2.6.1"
 vico = "1.14.0"
+lottie = "4.2.0"
 retrofit = "2.9.0"
 kotlinx = "1.7.3"
 dagger = "2.51"
@@ -31,6 +32,8 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 vico-compose = { group = "com.patrykandpatrick.vico", name = "compose", version.ref = "vico" }
+
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 
 retrofit-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
