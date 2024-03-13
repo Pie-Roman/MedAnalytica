@@ -29,6 +29,7 @@ fun Navigation(
         composable(route = Screen.AnalysisGraph.route) {
             AnalysisGraphScreenView(
                 viewModelFactory = viewModelsFactory.analysisGraphViewModelFactory,
+                navController = navController,
             )
         }
         composable(route = Screen.PostAnalysis.route) {

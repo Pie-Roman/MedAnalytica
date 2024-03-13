@@ -28,6 +28,8 @@ dependencies {
     api(project(":domain:analysis-graph-domain"))
     api(project(":data:analysis-graph-data"))
 
+    api(project(":common:navigation:api"))
+
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.compose.ui)
@@ -36,6 +38,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.uitooling)
     implementation(libs.androidx.compose.uitoolingpreview)
+
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.vico.compose)
 
