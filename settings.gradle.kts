@@ -30,10 +30,12 @@ include(":feature:post-analysis-feature")
 // Domain modules
 include(":domain:analysis-graph-domain")
 include(":domain:uid-domain")
+include(":domain:token-domain")
 include(":domain:post-analysis-domain")
 
 // Data modules
 include(":data:analysis-graph-data")
 include(":data:uid-data")
+include(":data:token-data")
 include(":data:post-analysis-data")
  
