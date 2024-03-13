@@ -35,6 +35,7 @@ fun Navigation(
         composable(route = Screen.PostAnalysis.route) {
             PostAnalysisScreenView(
                 viewModelFactory = viewModelsFactory.postAnalysisViewModelFactory,
+                navController = navController,
             )
         }
     }
