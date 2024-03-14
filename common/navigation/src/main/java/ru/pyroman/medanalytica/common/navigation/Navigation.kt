@@ -1,5 +1,11 @@
 package ru.pyroman.medanalytica.common.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,6 +25,14 @@ fun Navigation(
     NavHost(
         navController = navController,
         startDestination = Screen.Start.route,
+        enterTransition = { slideIntoContainer(
+            towards = AnimatedContentTransitionScope.SlideDirection.Start,
+            animationSpec = tween(300)
+        ) },
+        exitTransition = { slideOutOfContainer(
+            towards = AnimatedContentTransitionScope.SlideDirection.Start,
+            animationSpec = tween(300)
+        ) },
     ) {
         composable(route = Screen.Start.route) {
             StartScreenView(
