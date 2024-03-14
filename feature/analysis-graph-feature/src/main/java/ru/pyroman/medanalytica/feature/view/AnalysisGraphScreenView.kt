@@ -1,8 +1,14 @@
 package ru.pyroman.medanalytica.feature.view
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -94,39 +100,52 @@ fun AnalysisGraphListView(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
         ) {
-            TextButton(
-                colors = ButtonDefaults.buttonColors(Color.Transparent),
+            Row(
                 modifier = Modifier
-                    .align(Alignment.End)
+                    .fillMaxWidth()
                     .padding(
                         top = 32.dp,
-                        bottom = 16.dp,
                     ),
-                onClick = {
-                    navController.navigate(Screen.Start.route)
-                    onLogoutClick()
-                },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_logout),
-                    contentDescription = null,
+                Text(
+                    text = "Анализы",
+                    fontSize = TextUnit(28f, TextUnitType.Sp),
+                    fontWeight = FontWeight.Bold,
                 )
-            }
 
-            Text(
-                text = "Анализы",
-                fontSize = TextUnit(28f, TextUnitType.Sp),
-                fontWeight = FontWeight.Bold,
-            )
+                TextButton(
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
+                    onClick = {
+                        navController.navigate(Screen.Start.route)
+                        onLogoutClick()
+                    },
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_logout),
+                        contentDescription = null,
+                    )
+                }
+            }
 
             AnalysisGraphSearchView(
                 modifier = Modifier
                     .padding(
-                        vertical = 16.dp,
+                        top = 8.dp,
+                        bottom = 16.dp,
                     ),
             ) { searchInput ->
                 onSearchInput(searchInput)
             }
+
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(color = colorResource(id = UiKitR.color.gray))
+                    .padding(vertical = 16.dp),
+            )
 
             when (state) {
                 is AnalysisGraphState.Idle ->
@@ -138,6 +157,7 @@ fun AnalysisGraphListView(
                 is AnalysisGraphState.Success ->
                     AnalysisGraphListSuccessView(
                         vo = state.graphListVo,
+                        warningVo = state.warningVo,
                     )
 
                 is AnalysisGraphState.Error ->
