@@ -14,8 +14,9 @@ import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisData
 import ru.pyroman.medanalytica.domain.postanalysis.repository.PostAnalysisRepository
 import ru.pyroman.medanalytica.postanalysis.feature.state.PostAnalysisState
 import java.io.BufferedInputStream
+import javax.inject.Inject
 
-internal class PostAnalysisViewModel(
+class PostAnalysisViewModel @Inject internal constructor(
     application: Application,
     private val postAnalysisRepository: PostAnalysisRepository,
 ) : AndroidViewModel(application) {

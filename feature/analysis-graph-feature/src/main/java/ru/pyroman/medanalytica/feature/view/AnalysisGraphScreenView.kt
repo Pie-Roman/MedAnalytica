@@ -34,7 +34,6 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.feature.analysisgraph.R
@@ -44,17 +43,13 @@ import ru.pyroman.medanalytica.feature.view.graphlist.AnalysisGraphListLoadingVi
 import ru.pyroman.medanalytica.feature.view.graphlist.AnalysisGraphListSuccessView
 import ru.pyroman.medanalytica.feature.view.search.AnalysisGraphSearchView
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModel
-import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
 import ru.pyroman.medanalytica.base.uikit.R as UiKitR
 
 @Composable
 fun AnalysisGraphScreenView(
-    viewModelFactory: AnalysisGraphViewModelFactory,
+    viewModel: AnalysisGraphViewModel,
     navController: NavController,
 ) {
-    val viewModel: AnalysisGraphViewModel = viewModel(
-        factory = viewModelFactory,
-    )
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
     AnalysisGraphListView(

@@ -11,8 +11,9 @@ import ru.pyroman.medanalytica.domain.register.model.RegisterData
 import ru.pyroman.medanalytica.domain.register.model.RegisterResult
 import ru.pyroman.medanalytica.domain.register.repository.RegisterRepository
 import ru.pyroman.medanalytica.feature.register.state.RegisterState
+import javax.inject.Inject
 
-internal class RegisterViewModel(
+class RegisterViewModel @Inject internal constructor(
     private val registerRepository: RegisterRepository,
 ) : ViewModel() {
 

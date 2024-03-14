@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.feature.postanalysis.R
 import ru.pyroman.medanalytica.postanalysis.feature.state.PostAnalysisState
@@ -24,16 +23,12 @@ import ru.pyroman.medanalytica.postanalysis.feature.view.documentpicker.Document
 import ru.pyroman.medanalytica.postanalysis.feature.view.post.PostAnalysisErrorView
 import ru.pyroman.medanalytica.postanalysis.feature.view.post.PostAnalysisLoadingView
 import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModel
-import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
 
 @Composable
 fun PostAnalysisScreenView(
-    viewModelFactory: PostAnalysisViewModelFactory,
+    viewModel: PostAnalysisViewModel,
     navController: NavController,
 ) {
-    val viewModel: PostAnalysisViewModel = viewModel (
-        factory = viewModelFactory,
-    )
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
     PostAnalysisView(

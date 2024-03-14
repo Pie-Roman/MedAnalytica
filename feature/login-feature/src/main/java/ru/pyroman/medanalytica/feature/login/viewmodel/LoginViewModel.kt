@@ -11,8 +11,9 @@ import ru.pyroman.medanalytica.domain.login.model.LoginData
 import ru.pyroman.medanalytica.domain.login.model.LoginResult
 import ru.pyroman.medanalytica.domain.login.repository.LoginRepository
 import ru.pyroman.medanalytica.feature.login.state.LoginState
+import javax.inject.Inject
 
-internal class LoginViewModel(
+class LoginViewModel @Inject internal constructor(
     private val loginRepository: LoginRepository,
 ) : ViewModel() {
 

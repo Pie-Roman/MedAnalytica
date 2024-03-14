@@ -17,25 +17,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.domain.register.model.RegisterData
 import ru.pyroman.medanalytica.feature.register.state.RegisterState
 import ru.pyroman.medanalytica.feature.register.viewmodel.RegisterViewModel
-import ru.pyroman.medanalytica.feature.register.viewmodel.RegisterViewModelFactory
 import ru.pyroman.medanalytica.ui.view.InputView
 import ru.pyroman.medanalytica.ui.view.StyledTextButton
 import ru.pyroman.medanalytica.base.uikit.R as UiKitR
 
 @Composable
 fun RegisterScreenView(
-    viewModelFactory: RegisterViewModelFactory,
+    viewModel: RegisterViewModel,
     navController: NavController,
 ) {
-    val viewModel: RegisterViewModel = viewModel(
-        factory = viewModelFactory,
-    )
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
     if (state == RegisterState.Success) {

@@ -1,11 +1,7 @@
 package ru.pyroman.medanalytica.common.navigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideIn
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,7 +15,7 @@ import ru.pyroman.medanalytica.postanalysis.feature.view.PostAnalysisScreenView
 
 @Composable
 fun Navigation(
-    viewModelsFactory: ViewModelsFactory,
+    viewModelsRegistry: ViewModelsRegistry,
 ) {
     val navController = rememberNavController()
     NavHost(
@@ -36,31 +32,31 @@ fun Navigation(
     ) {
         composable(route = Screen.Start.route) {
             StartScreenView(
-                viewModelFactory = viewModelsFactory.startViewModelFactory,
+                viewModel = viewModelsRegistry.startViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.Login.route) {
             LoginScreenView(
-                viewModelFactory = viewModelsFactory.loginViewModelFactory,
+                viewModel = viewModelsRegistry.loginViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.Register.route) {
             RegisterScreenView(
-                viewModelFactory = viewModelsFactory.registerViewModelFactory,
+                viewModel = viewModelsRegistry.registerViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.AnalysisGraph.route) {
             AnalysisGraphScreenView(
-                viewModelFactory = viewModelsFactory.analysisGraphViewModelFactory,
+                viewModel = viewModelsRegistry.analysisGraphViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.PostAnalysis.route) {
             PostAnalysisScreenView(
-                viewModelFactory = viewModelsFactory.postAnalysisViewModelFactory,
+                viewModel = viewModelsRegistry.postAnalysisViewModel,
                 navController = navController,
             )
         }

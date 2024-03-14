@@ -11,7 +11,7 @@ import ru.pyroman.medanalytica.domain.start.repository.StartRepository
 import ru.pyroman.medanalytica.feature.start.state.StartState
 import javax.inject.Inject
 
-internal class StartViewModel @Inject constructor(
+class StartViewModel @Inject internal constructor(
     private val startRepository: StartRepository,
 ) : ViewModel() {
 
