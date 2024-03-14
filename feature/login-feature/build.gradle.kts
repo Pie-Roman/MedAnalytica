@@ -42,6 +42,8 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose)
 
+    implementation(libs.androidx.compose.material.icons)
+
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 }

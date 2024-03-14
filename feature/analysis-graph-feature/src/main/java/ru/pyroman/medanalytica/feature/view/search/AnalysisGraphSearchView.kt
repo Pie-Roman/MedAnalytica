@@ -48,6 +48,7 @@ fun AnalysisGraphSearchView(
             text = textFieldValue
             onSearchInput(textFieldValue)
         },
+        singleLine = true,
         decorationBox = { textField ->
             Row(
                 modifier = Modifier
