@@ -29,6 +29,7 @@ dependencies {
 
     api(project(":feature:analysis-graph-feature"))
     api(project(":feature:post-analysis-feature"))
+    api(project(":feature:login-feature"))
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

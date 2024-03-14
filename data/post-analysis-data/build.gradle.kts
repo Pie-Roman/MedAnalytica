@@ -17,7 +17,7 @@ android {
 dependencies {
     api(project(":domain:post-analysis-domain"))
     api(project(":domain:uid-domain"))
-    api(project(":data:uid-data"))
+    api(project(":domain:token-domain"))
 
     // Retrofit
     implementation(libs.retrofit.retrofit)

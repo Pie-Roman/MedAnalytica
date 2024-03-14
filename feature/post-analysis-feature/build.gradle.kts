@@ -24,7 +24,7 @@ android {
 
 dependencies {
 
-    api(project(":base:uikit"))
+    implementation(project(":base:uikit"))
     api(project(":domain:post-analysis-domain"))
     api(project(":data:post-analysis-data"))
 

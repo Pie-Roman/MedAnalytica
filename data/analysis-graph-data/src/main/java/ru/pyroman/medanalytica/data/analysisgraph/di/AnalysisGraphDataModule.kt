@@ -14,6 +14,7 @@ import ru.pyroman.medanalytica.data.analysisgraph.network.AnalysisGraphNetworkMa
 import ru.pyroman.medanalytica.data.analysisgraph.network.api.AnalysisGraphNetworkApi
 import ru.pyroman.medanalytica.data.analysisgraph.repository.AnalysisGraphRepositoryImpl
 import ru.pyroman.medanalytica.domain.analysisgraph.repository.AnalysisGraphRepository
+import ru.pyroman.medanalytica.domain.token.repository.TokenRepository
 import ru.pyroman.medanalytica.domain.uid.repository.UidRepository
 
 @Module
@@ -85,6 +86,7 @@ interface AnalysisGraphDataModule {
         @Provides
         internal fun provideAnalysisGraphRepositoryImpl(
             uidRepository: UidRepository,
+            tokenRepository: TokenRepository,
             networkDataSource: AnalysisGraphNetworkDataSource,
             networkMapper: AnalysisGraphNetworkMapper,
             cacheDataSource: AnalysisGraphCacheDataSource,
@@ -92,6 +94,7 @@ interface AnalysisGraphDataModule {
         ): AnalysisGraphRepositoryImpl {
             return AnalysisGraphRepositoryImpl(
                 uidRepository = uidRepository,
+                tokenRepository = tokenRepository,
                 networkDataSource = networkDataSource,
                 networkMapper = networkMapper,
                 cacheDataSource = cacheDataSource,

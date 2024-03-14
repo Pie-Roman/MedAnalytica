@@ -8,6 +8,7 @@ import ru.pyroman.medanalytica.data.postanalysis.network.PostAnalysisNetworkMapp
 import ru.pyroman.medanalytica.data.postanalysis.network.api.PostAnalysisNetworkApi
 import ru.pyroman.medanalytica.data.postanalysis.repository.PostAnalysisRepositoryImpl
 import ru.pyroman.medanalytica.domain.postanalysis.repository.PostAnalysisRepository
+import ru.pyroman.medanalytica.domain.token.repository.TokenRepository
 import ru.pyroman.medanalytica.domain.uid.repository.UidRepository
 
 @Module
@@ -42,11 +43,13 @@ interface PostAnalysisDataModule {
         @Provides
         internal fun providePostAnalysisRepositoryImpl(
             uidRepository: UidRepository,
+            tokenRepository: TokenRepository,
             networkDataSource: PostAnalysisNetworkDataSource,
             networkMapper: PostAnalysisNetworkMapper,
         ): PostAnalysisRepositoryImpl {
             return PostAnalysisRepositoryImpl(
                 uidRepository = uidRepository,
+                tokenRepository = tokenRepository,
                 networkDataSource = networkDataSource,
                 networkMapper = networkMapper,
             )
