@@ -56,7 +56,13 @@ fun AnalysisGraphScreenView(
         state = state,
         navController = navController,
         onIdle = viewModel::onRefresh,
-        onLogoutClick = viewModel::onLogoutClick,
+        onLogoutClick = {
+            viewModel.onLogoutClick(
+                onComplete = {
+                    navController.navigate(Screen.Start.route)
+                }
+            )
+        },
         onRefresh = viewModel::onRefresh,
         onSearchInput = viewModel::onSearchInput,
     )
@@ -113,7 +119,6 @@ fun AnalysisGraphListView(
                 TextButton(
                     colors = ButtonDefaults.buttonColors(Color.Transparent),
                     onClick = {
-                        navController.navigate(Screen.Start.route)
                         onLogoutClick()
                     },
                 ) {

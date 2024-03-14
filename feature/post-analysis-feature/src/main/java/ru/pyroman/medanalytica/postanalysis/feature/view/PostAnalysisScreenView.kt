@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,6 +27,7 @@ import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewMo
 fun PostAnalysisScreenView(
     viewModel: PostAnalysisViewModel,
     navController: NavController,
+    onSuccess: () -> Unit,
 ) {
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
@@ -35,6 +35,11 @@ fun PostAnalysisScreenView(
         state = state,
         navController = navController,
         onFileInput = viewModel::onFileInput,
+        onSuccess = {
+            navController.navigateUp()
+            viewModel.reset()
+            onSuccess()
+        }
     )
 }
 
@@ -42,6 +47,7 @@ fun PostAnalysisScreenView(
 private fun PostAnalysisView(
     state: PostAnalysisState,
     navController: NavController,
+    onSuccess: () -> Unit,
     onFileInput: (Uri) -> Unit,
 ) {
     Box(
@@ -73,9 +79,7 @@ private fun PostAnalysisView(
                 PostAnalysisLoadingView()
             }
             is PostAnalysisState.Success -> {
-                Text(
-                    text = "Success"
-                )
+                onSuccess()
             }
             is PostAnalysisState.Error -> {
                 PostAnalysisErrorView(

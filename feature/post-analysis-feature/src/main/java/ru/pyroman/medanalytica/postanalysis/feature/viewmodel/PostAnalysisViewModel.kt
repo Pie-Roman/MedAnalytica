@@ -24,6 +24,10 @@ class PostAnalysisViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<PostAnalysisState>(PostAnalysisState.Idle)
     val viewState = _viewState.asStateFlow()
 
+    fun reset() = viewModelScope.launch {
+        _viewState.emit(PostAnalysisState.Idle)
+    }
+
     fun onFileInput(uri: Uri) = viewModelScope.launch {
         if (_viewState.value == PostAnalysisState.Loading) {
             return@launch

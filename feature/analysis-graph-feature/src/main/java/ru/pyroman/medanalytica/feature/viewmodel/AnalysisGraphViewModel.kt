@@ -41,10 +41,13 @@ class AnalysisGraphViewModel @Inject internal constructor(
         }
     }
 
-    fun onLogoutClick() = viewModelScope.launch {
+    fun onLogoutClick(
+        onComplete: () -> Unit,
+    ) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             analysisGraphRepository.clearCache()
         }
+        onComplete()
     }
 
     private suspend fun submitNewGraphListData(

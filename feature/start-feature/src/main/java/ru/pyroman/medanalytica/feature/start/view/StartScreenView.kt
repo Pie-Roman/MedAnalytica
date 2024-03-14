@@ -35,6 +35,7 @@ fun StartScreenView(
         }
         is StartState.ProceedNext -> {
             navController.navigate(Screen.AnalysisGraph.route)
+            viewModel.reset()
         }
         is StartState.Error -> {
 
