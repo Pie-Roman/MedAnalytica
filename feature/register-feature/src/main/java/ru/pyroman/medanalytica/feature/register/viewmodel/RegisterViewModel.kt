@@ -38,7 +38,6 @@ class RegisterViewModel @Inject internal constructor(
                     RegisterResult.SUCCESS -> RegisterState.Success
                     RegisterResult.FAILURE -> RegisterState.Failure
                 }
-                RegisterState.Success
             } catch (error: Throwable) {
                 RegisterState.Error
             }
