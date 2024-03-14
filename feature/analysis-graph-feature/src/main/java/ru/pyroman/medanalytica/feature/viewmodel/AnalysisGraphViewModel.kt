@@ -40,6 +40,12 @@ internal class AnalysisGraphViewModel internal constructor(
         }
     }
 
+    fun onLogoutClick() = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            analysisGraphRepository.clearCache()
+        }
+    }
+
     private suspend fun submitNewGraphListData(
         extractFunc: suspend () -> AnalysisGraphListData,
     ) {

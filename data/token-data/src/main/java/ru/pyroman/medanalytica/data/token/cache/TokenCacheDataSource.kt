@@ -35,6 +35,14 @@ internal class TokenCacheDataSource @Inject constructor(
         }
     }
 
+    suspend fun clearToken() {
+        return withContext(Dispatchers.Main) {
+            sharedPreferences.edit()
+                .remove(TOKEN_KEY)
+                .apply()
+        }
+    }
+
     companion object {
         private const val FILE_NAME = "preferences"
         private const val TOKEN_KEY = "token"

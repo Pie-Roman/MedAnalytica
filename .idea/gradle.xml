@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/data/login-data" />
             <option value="$PROJECT_DIR$/data/post-analysis-data" />
             <option value="$PROJECT_DIR$/data/register-data" />
+            <option value="$PROJECT_DIR$/data/start-data" />
             <option value="$PROJECT_DIR$/data/token-data" />
             <option value="$PROJECT_DIR$/data/uid-data" />
             <option value="$PROJECT_DIR$/domain" />
@@ -27,6 +28,7 @@
             <option value="$PROJECT_DIR$/domain/login-domain" />
             <option value="$PROJECT_DIR$/domain/post-analysis-domain" />
             <option value="$PROJECT_DIR$/domain/register-domain" />
+            <option value="$PROJECT_DIR$/domain/start-domain" />
             <option value="$PROJECT_DIR$/domain/token-domain" />
             <option value="$PROJECT_DIR$/domain/uid-domain" />
             <option value="$PROJECT_DIR$/feature" />
@@ -34,6 +36,7 @@
             <option value="$PROJECT_DIR$/feature/login-feature" />
             <option value="$PROJECT_DIR$/feature/post-analysis-feature" />
             <option value="$PROJECT_DIR$/feature/register-feature" />
+            <option value="$PROJECT_DIR$/feature/start-feature" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

@@ -46,6 +46,12 @@ class AnalysisGraphRepositoryImpl @Inject internal constructor(
         )
     }
 
+    override suspend fun clearCache() {
+        uidRepository.clearUid()
+        tokenRepository.clearToken()
+        cacheDataSource.clearGraphList()
+    }
+
     private suspend fun getGraphListFromNetwork(): AnalysisGraphList {
         val uid = requireNotNull(uidRepository.getUid())
         val token = requireNotNull(tokenRepository.getToken())

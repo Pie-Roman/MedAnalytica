@@ -7,4 +7,6 @@ interface TokenRepository {
     suspend fun setToken(token: Token)
 
     suspend fun getToken(): Token?
+
+    suspend fun clearToken()
 }

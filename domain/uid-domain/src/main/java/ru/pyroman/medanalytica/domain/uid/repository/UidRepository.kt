@@ -7,4 +7,6 @@ interface UidRepository {
     suspend fun setUid(uid: Uid)
 
     suspend fun getUid(): Uid?
+
+    suspend fun clearUid()
 }

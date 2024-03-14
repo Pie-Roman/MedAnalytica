@@ -15,4 +15,8 @@ class UidRepositoryImpl @Inject internal constructor(
     override suspend fun getUid(): Uid? {
         return cacheDataSource.getUid()
     }
+
+    override suspend fun clearUid() {
+        return cacheDataSource.clearUid()
+    }
 }

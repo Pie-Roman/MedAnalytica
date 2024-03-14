@@ -64,6 +64,7 @@ dependencies {
     api(project(":data:register-data"))
     api(project(":data:uid-data"))
     api(project(":data:token-data"))
+    api(project(":data:start-data"))
 
     // Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)

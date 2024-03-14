@@ -11,6 +11,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -53,15 +54,10 @@ fun AnalysisGraphScreenView(
     AnalysisGraphListView(
         state = state,
         navController = navController,
-        onIdle = {
-            viewModel.onRefresh()
-        },
-        onRefresh = {
-            viewModel.onRefresh()
-        },
-        onSearchInput = { searchInput ->
-            viewModel.onSearchInput(searchInput)
-        },
+        onIdle = viewModel::onRefresh,
+        onLogoutClick = viewModel::onLogoutClick,
+        onRefresh = viewModel::onRefresh,
+        onSearchInput = viewModel::onSearchInput,
     )
 }
 
@@ -71,6 +67,7 @@ fun AnalysisGraphListView(
     state: AnalysisGraphState,
     navController: NavController,
     onIdle: () -> Unit,
+    onLogoutClick: () -> Unit,
     onRefresh: () -> Unit,
     onSearchInput: (String) -> Unit,
 ) {
@@ -97,16 +94,24 @@ fun AnalysisGraphListView(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_logout),
-                contentDescription = null,
+            TextButton(
+                colors = ButtonDefaults.buttonColors(Color.Transparent),
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(
                         top = 32.dp,
                         bottom = 16.dp,
                     ),
-            )
+                onClick = {
+                    navController.navigate(Screen.Start.route)
+                    onLogoutClick()
+                },
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_logout),
+                    contentDescription = null,
+                )
+            }
 
             Text(
                 text = "Анализы",

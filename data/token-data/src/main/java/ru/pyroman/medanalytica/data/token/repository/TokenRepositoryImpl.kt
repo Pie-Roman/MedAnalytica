@@ -15,4 +15,8 @@ class TokenRepositoryImpl @Inject internal constructor(
     override suspend fun getToken(): Token? {
         return cacheDataSource.getToken()
     }
+
+    override suspend fun clearToken() {
+        return cacheDataSource.clearToken()
+    }
 }
