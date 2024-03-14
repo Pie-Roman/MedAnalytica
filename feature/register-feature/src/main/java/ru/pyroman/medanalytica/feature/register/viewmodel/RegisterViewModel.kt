@@ -20,6 +20,10 @@ class RegisterViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<RegisterState>(RegisterState.Idle)
     val viewState = _viewState.asStateFlow()
 
+    fun reset() = viewModelScope.launch {
+        _viewState.emit(RegisterState.Idle)
+    }
+
     fun onRegister(registerData: RegisterData) = viewModelScope.launch {
         if (_viewState.value == RegisterState.Loading) {
             return@launch

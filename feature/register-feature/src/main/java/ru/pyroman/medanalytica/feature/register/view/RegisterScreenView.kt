@@ -35,6 +35,7 @@ fun RegisterScreenView(
 
     if (state == RegisterState.Success) {
         navController.navigate(Screen.AnalysisGraph.route)
+        viewModel.reset()
     }
 
     RegisterView(
