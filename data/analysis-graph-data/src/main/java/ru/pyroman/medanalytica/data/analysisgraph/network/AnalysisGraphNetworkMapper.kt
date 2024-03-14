@@ -18,12 +18,14 @@ internal class AnalysisGraphNetworkMapper @Inject constructor() {
 
     private fun mapAnalysisGraphData(dto: AnalysisGraphDataNetworkDto): AnalysisGraphData {
         val analysisType = dto.type.orEmpty()
+        val units = dto.units.orEmpty()
         val points = dto.values.orEmpty().mapNotNull { pointDto ->
             pointDto?.let { mapAnalysisGraphPoint(it) }
         }
 
         return AnalysisGraphData(
             analysisType = analysisType,
+            units = units,
             points = points,
         )
     }

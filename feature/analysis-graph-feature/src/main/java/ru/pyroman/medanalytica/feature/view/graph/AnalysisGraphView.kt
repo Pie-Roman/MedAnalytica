@@ -1,5 +1,6 @@
 package ru.pyroman.medanalytica.feature.view.graph
 
+import android.text.Layout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -20,14 +21,15 @@ import androidx.compose.ui.unit.dp
 import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.axis.vertical.rememberStartAxis
 import com.patrykandpatrick.vico.compose.chart.Chart
+import com.patrykandpatrick.vico.compose.chart.column.columnChart
 import com.patrykandpatrick.vico.compose.chart.layout.fullWidth
-import com.patrykandpatrick.vico.compose.chart.line.lineChart
 import com.patrykandpatrick.vico.compose.chart.scroll.rememberChartScrollSpec
 import com.patrykandpatrick.vico.core.axis.Axis
-import com.patrykandpatrick.vico.core.chart.DefaultPointConnector
 import com.patrykandpatrick.vico.core.chart.layout.HorizontalLayout
-import com.patrykandpatrick.vico.core.chart.line.LineChart
 import com.patrykandpatrick.vico.core.chart.values.AxisValuesOverrider
+import com.patrykandpatrick.vico.core.component.shape.LineComponent
+import com.patrykandpatrick.vico.core.component.text.TextComponent
+import com.patrykandpatrick.vico.core.dimensions.MutableDimensions
 import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
 import com.patrykandpatrick.vico.core.scroll.InitialScroll
 import ru.pyroman.medanalytica.feature.vo.AnalysisGraphDataVo
@@ -39,7 +41,7 @@ fun AnalysisGraphView(
     vo: AnalysisGraphDataVo,
     modifier: Modifier = Modifier,
 ) {
-    val spacing = 70.dp
+    val spacing = 16.dp
     val padding = spacing / 2
 
     Column(
@@ -52,7 +54,7 @@ fun AnalysisGraphView(
             modifier = Modifier
                 .align(Alignment.Start)
                 .padding(bottom = 20.dp),
-            text = vo.analysisType,
+            text = vo.title,
             fontSize = TextUnit(20f, TextUnitType.Sp),
             fontWeight = FontWeight.Medium,
         )
@@ -60,28 +62,42 @@ fun AnalysisGraphView(
             modifier = Modifier
                 .background(color = Color.White)
                 .padding(all = 8.dp),
-            chart = lineChart(
-                lines = listOf(
-                    LineChart.LineSpec(
-                        lineColor = colorResource(UiKitR.color.lightBlue).toArgb(),
-                        pointConnector = DefaultPointConnector(
-                            cubicStrength = 0f,
-                        )
+            chart = columnChart(
+                columns = listOf(
+                    LineComponent(
+                        color = colorResource(UiKitR.color.lightBlue).toArgb(),
+                        thicknessDp = 48f,
                     )
                 ),
+                dataLabel = TextComponent.Builder()
+                    .apply { 
+                        margins = MutableDimensions(
+                            topDp = -16f,
+                            bottomDp = 0f,
+                            startDp = 0f,
+                            endDp = 0f,
+                        )
+                    }
+                    .build(),
                 spacing = spacing,
                 axisValuesOverrider = AxisValuesOverrider.adaptiveYValues(
-                    yFraction = 1.01f,
-                    round = true,
+                    yFraction = 1.3f,
+                    round = false,
                 )
             ),
             chartModelProducer = ChartEntryModelProducer(vo.points),
             startAxis = rememberStartAxis(),
             bottomAxis = rememberBottomAxis(
+                label = TextComponent.Builder()
+                    .apply { 
+                        lineCount = 2
+                        textAlignment = Layout.Alignment.ALIGN_CENTER
+                    }
+                    .build(),
                 valueFormatter = { value, _ ->
                     vo.points[value.toInt()].creationDateTime
                 },
-                sizeConstraint = Axis.SizeConstraint.TextWidth("DD.MM.YYYY")
+                sizeConstraint = Axis.SizeConstraint.Auto()
             ),
             chartScrollSpec = rememberChartScrollSpec(
                 initialScroll = InitialScroll.End,
@@ -98,7 +114,7 @@ fun AnalysisGraphView(
 @Composable
 fun AnalysisGraphView_Preview() {
     val vo = AnalysisGraphDataVo(
-        analysisType = "MCH",
+        title = "MCH",
         points = listOf(
             AnalysisGraphPointVo(
                 creationDateTime = "25.01.24",

@@ -67,7 +67,6 @@ fun AnalysisGraphScreenView(
         onSearchInput = viewModel::onSearchInput,
         onAddAnalysisClick = {
             navController.navigate(Screen.PostAnalysis.route)
-            viewModel.reset()
         }
     )
 }

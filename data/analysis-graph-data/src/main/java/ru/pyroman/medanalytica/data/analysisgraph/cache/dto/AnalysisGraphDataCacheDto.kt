@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "analysis_graph_table")
 internal data class AnalysisGraphDataCacheDto(
     @PrimaryKey val type: String,
+    val units: String,
     val values: List<AnalysisGraphPointCacheDto>,
 )
