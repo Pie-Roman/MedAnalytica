@@ -54,17 +54,21 @@ fun AnalysisGraphScreenView(
 
     AnalysisGraphListView(
         state = state,
-        navController = navController,
         onIdle = viewModel::onRefresh,
         onLogoutClick = {
             viewModel.onLogoutClick(
                 onComplete = {
                     navController.navigate(Screen.Start.route)
+                    viewModel.reset()
                 }
             )
         },
         onRefresh = viewModel::onRefresh,
         onSearchInput = viewModel::onSearchInput,
+        onAddAnalysisClick = {
+            navController.navigate(Screen.PostAnalysis.route)
+            viewModel.reset()
+        }
     )
 }
 
@@ -72,11 +76,11 @@ fun AnalysisGraphScreenView(
 @Composable
 fun AnalysisGraphListView(
     state: AnalysisGraphState,
-    navController: NavController,
     onIdle: () -> Unit,
     onLogoutClick: () -> Unit,
     onRefresh: () -> Unit,
     onSearchInput: (String) -> Unit,
+    onAddAnalysisClick: () -> Unit,
 ) {
     val isRefreshing = state == AnalysisGraphState.Loading
     val pullRefreshState = rememberPullRefreshState(
@@ -174,9 +178,7 @@ fun AnalysisGraphListView(
             colors = ButtonDefaults.buttonColors(
                 colorResource(id = UiKitR.color.lightBlue)
             ),
-            onClick = {
-                navController.navigate(Screen.PostAnalysis.route)
-            },
+            onClick = onAddAnalysisClick,
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_add),

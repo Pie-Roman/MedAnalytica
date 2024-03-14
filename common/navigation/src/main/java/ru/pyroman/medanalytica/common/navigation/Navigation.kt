@@ -58,7 +58,6 @@ fun Navigation(
             PostAnalysisScreenView(
                 viewModel = viewModelsRegistry.postAnalysisViewModel,
                 navController = navController,
-                onSuccess = viewModelsRegistry.analysisGraphViewModel::onRefresh,
             )
         }
     }

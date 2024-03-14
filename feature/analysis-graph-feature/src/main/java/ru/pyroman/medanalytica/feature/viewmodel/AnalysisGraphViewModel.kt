@@ -23,6 +23,10 @@ class AnalysisGraphViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<AnalysisGraphState>(AnalysisGraphState.Idle)
     val viewState = _viewState.asStateFlow()
 
+    fun reset() = viewModelScope.launch {
+        _viewState.emit(AnalysisGraphState.Idle)
+    }
+
     fun onSearchInput(searchInput: String) = viewModelScope.launch {
         submitNewGraphListData {
             val searchInputFormatted = searchInput

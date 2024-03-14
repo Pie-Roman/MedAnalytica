@@ -26,8 +26,7 @@ import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewMo
 @Composable
 fun PostAnalysisScreenView(
     viewModel: PostAnalysisViewModel,
-    navController: NavController,
-    onSuccess: () -> Unit,
+    navController: NavController
 ) {
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
@@ -38,7 +37,6 @@ fun PostAnalysisScreenView(
         onSuccess = {
             navController.navigateUp()
             viewModel.reset()
-            onSuccess()
         }
     )
 }

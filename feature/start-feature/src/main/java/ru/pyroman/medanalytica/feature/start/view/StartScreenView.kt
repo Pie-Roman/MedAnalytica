@@ -27,9 +27,11 @@ fun StartScreenView(
             StartView(
                 onLoginClick = {
                     navController.navigate(Screen.Login.route)
+                    viewModel.reset()
                 },
                 onRegisterClick = {
                     navController.navigate(Screen.Register.route)
+                    viewModel.reset()
                 }
             )
         }

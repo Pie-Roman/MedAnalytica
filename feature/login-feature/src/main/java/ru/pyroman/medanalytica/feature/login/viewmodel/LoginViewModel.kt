@@ -34,7 +34,6 @@ class LoginViewModel @Inject internal constructor(
                     LoginResult.SUCCESS -> LoginState.Success
                     LoginResult.FAILURE -> LoginState.Failure
                 }
-                LoginState.Success
             } catch (error: Throwable) {
                 LoginState.Error
             }
