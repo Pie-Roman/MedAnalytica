@@ -12,6 +12,7 @@ import ru.pyroman.medanalytica.application.MedanalyticaApplication
 import ru.pyroman.medanalytica.common.navigation.Navigation
 import ru.pyroman.medanalytica.common.navigation.ViewModelsFactory
 import ru.pyroman.medanalytica.feature.login.viewmodel.LoginViewModelFactory
+import ru.pyroman.medanalytica.feature.register.viewmodel.RegisterViewModelFactory
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
 import ru.pyroman.medanalytica.ui.theme.MedAnalyticaTheme
 import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
@@ -27,6 +28,9 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var loginViewModelFactory: LoginViewModelFactory
+
+    @Inject
+    lateinit var registerViewModelFactory: RegisterViewModelFactory
 
     private lateinit var activityComponent: MainActivityComponent
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +53,7 @@ class MainActivity : ComponentActivity() {
                            analysisGraphViewModelFactory = analysisGraphViewModelFactory,
                            postAnalysisViewModelFactory = postAnalysisViewModelFactory,
                            loginViewModelFactory = loginViewModelFactory,
+                           registerViewModelFactory = registerViewModelFactory,
                        )
                    )
                 }
