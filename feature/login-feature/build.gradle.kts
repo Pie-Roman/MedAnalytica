@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.pyroman.medanalytica.common.navigation"
+    namespace = "ru.pyroman.medanalytica.feature.login"
     compileSdk = 34
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -25,11 +25,8 @@ android {
 dependencies {
 
     api(project(":base:uikit"))
-    api(project(":common:navigation:api"))
-
-    api(project(":feature:analysis-graph-feature"))
-    api(project(":feature:post-analysis-feature"))
-    api(project(":feature:login-feature"))
+    api(project(":domain:login-domain"))
+    api(project(":data:login-data"))
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
@@ -39,6 +36,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.compose.uitooling)
     implementation(libs.androidx.compose.uitoolingpreview)
+    implementation(libs.androidx.activity.compose)
 
     implementation(libs.androidx.navigation.compose)
 

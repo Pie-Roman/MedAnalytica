@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/domain/uid-domain" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/analysis-graph-feature" />
+            <option value="$PROJECT_DIR$/feature/login-feature" />
             <option value="$PROJECT_DIR$/feature/post-analysis-feature" />
           </set>
         </option>

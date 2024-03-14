@@ -8,6 +8,7 @@ import ru.pyroman.medanalytica.data.login.network.LoginNetworkMapper
 import ru.pyroman.medanalytica.data.login.network.api.LoginNetworkApi
 import ru.pyroman.medanalytica.data.login.repository.LoginRepositoryImpl
 import ru.pyroman.medanalytica.domain.login.repository.LoginRepository
+import ru.pyroman.medanalytica.domain.token.repository.TokenRepository
 import ru.pyroman.medanalytica.domain.uid.repository.UidRepository
 
 @Module
@@ -42,11 +43,13 @@ interface LoginDataModule {
         @Provides
         internal fun provideLoginRepositoryImpl(
             uidRepository: UidRepository,
+            tokenRepository: TokenRepository,
             networkDataSource: LoginNetworkDataSource,
             networkMapper: LoginNetworkMapper,
         ): LoginRepositoryImpl {
             return LoginRepositoryImpl(
                 uidRepository = uidRepository,
+                tokenRepository = tokenRepository,
                 networkDataSource = networkDataSource,
                 networkMapper = networkMapper,
             )

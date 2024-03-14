@@ -26,6 +26,7 @@ include(":common:navigation:api")
 // Feature modules
 include(":feature:analysis-graph-feature")
 include(":feature:post-analysis-feature")
+include(":feature:login-feature")
 
 // Domain modules
 include(":domain:analysis-graph-domain")
