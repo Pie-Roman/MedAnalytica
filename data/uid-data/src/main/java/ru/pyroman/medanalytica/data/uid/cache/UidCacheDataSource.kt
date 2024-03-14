@@ -35,6 +35,14 @@ internal class UidCacheDataSource @Inject constructor(
         }
     }
 
+    suspend fun clearUid() {
+        return withContext(Dispatchers.Main) {
+            sharedPreferences.edit()
+                .remove(UID_KEY)
+                .apply()
+        }
+    }
+
     companion object {
         private const val FILE_NAME = "preferences"
         private const val UID_KEY = "uid"

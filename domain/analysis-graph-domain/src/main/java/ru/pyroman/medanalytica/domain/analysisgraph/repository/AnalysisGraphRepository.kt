@@ -7,4 +7,6 @@ interface AnalysisGraphRepository {
     suspend fun fetchGraphList(): AnalysisGraphListData
 
     suspend fun searchGraphs(searchText: String): AnalysisGraphListData
+
+    suspend fun clearCache()
 }

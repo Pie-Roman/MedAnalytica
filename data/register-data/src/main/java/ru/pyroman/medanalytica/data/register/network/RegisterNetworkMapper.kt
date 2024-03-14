@@ -9,7 +9,7 @@ class RegisterNetworkMapper {
         return RegisterDataNetworkDto(
             login = model.login,
             password = model.password,
-            name = model.password,
+            name = model.name,
             surname = model.surname,
             dateOfBirth = model.dateOfBirth,
             weight = model.weight,

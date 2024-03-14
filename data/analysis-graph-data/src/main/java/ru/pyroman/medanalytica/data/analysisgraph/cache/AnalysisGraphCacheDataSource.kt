@@ -20,4 +20,8 @@ internal class AnalysisGraphCacheDataSource @Inject constructor(
         dao.deleteGraphList()
         dao.insertGraphList(graphList)
     }
+
+    suspend fun clearGraphList() {
+        dao.deleteGraphList()
+    }
 }
