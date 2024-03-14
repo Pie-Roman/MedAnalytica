@@ -20,6 +20,10 @@ class LoginViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<LoginState>(LoginState.Idle)
     val viewState = _viewState.asStateFlow()
 
+    fun reset() = viewModelScope.launch {
+        _viewState.emit(LoginState.Idle)
+    }
+
     fun onLogin(loginData: LoginData) = viewModelScope.launch {
         if (_viewState.value == LoginState.Loading) {
             return@launch

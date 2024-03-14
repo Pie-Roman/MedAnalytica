@@ -35,6 +35,7 @@ fun LoginScreenView(
 
     if (state == LoginState.Success) {
         navController.navigate(Screen.AnalysisGraph.route)
+        viewModel.reset()
     }
 
     LoginView(
