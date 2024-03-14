@@ -1,4 +1,4 @@
-package ru.pyroman.postanalysis.feature.state
+package ru.pyroman.medanalytica.postanalysis.feature.state
 
 import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisResult
 

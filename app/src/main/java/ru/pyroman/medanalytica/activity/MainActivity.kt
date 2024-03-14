@@ -14,7 +14,7 @@ import ru.pyroman.medanalytica.common.navigation.ViewModelsFactory
 import ru.pyroman.medanalytica.feature.login.viewmodel.LoginViewModelFactory
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
 import ru.pyroman.medanalytica.ui.theme.MedAnalyticaTheme
-import ru.pyroman.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
+import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package ru.pyroman.postanalysis.feature.viewmodel
+package ru.pyroman.medanalytica.postanalysis.feature.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

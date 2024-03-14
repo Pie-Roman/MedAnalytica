@@ -24,9 +24,11 @@ android {
 
 dependencies {
 
-    api(project(":base:uikit"))
+    implementation(project(":base:uikit"))
     api(project(":domain:login-domain"))
     api(project(":data:login-data"))
+
+    api(project(":common:navigation:api"))
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

@@ -1,4 +1,4 @@
-package ru.pyroman.postanalysis.feature.view.post
+package ru.pyroman.medanalytica.postanalysis.feature.view.post
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size

@@ -1,4 +1,4 @@
-package ru.pyroman.postanalysis.feature.viewmodel
+package ru.pyroman.medanalytica.postanalysis.feature.viewmodel
 
 import android.app.Application
 import android.net.Uri
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisData
 import ru.pyroman.medanalytica.domain.postanalysis.repository.PostAnalysisRepository
-import ru.pyroman.postanalysis.feature.state.PostAnalysisState
+import ru.pyroman.medanalytica.postanalysis.feature.state.PostAnalysisState
 import java.io.BufferedInputStream
 
 internal class PostAnalysisViewModel(

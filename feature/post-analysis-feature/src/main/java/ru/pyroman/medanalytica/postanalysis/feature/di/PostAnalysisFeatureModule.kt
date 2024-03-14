@@ -1,4 +1,4 @@
-package ru.pyroman.postanalysis.feature.di
+package ru.pyroman.medanalytica.postanalysis.feature.di
 
 import dagger.Module
 

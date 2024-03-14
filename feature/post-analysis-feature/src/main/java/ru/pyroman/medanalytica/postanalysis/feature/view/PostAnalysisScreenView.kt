@@ -1,4 +1,4 @@
-package ru.pyroman.postanalysis.feature.view
+package ru.pyroman.medanalytica.postanalysis.feature.view
 
 import android.net.Uri
 import androidx.compose.foundation.layout.Box
@@ -19,12 +19,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.feature.postanalysis.R
-import ru.pyroman.postanalysis.feature.state.PostAnalysisState
-import ru.pyroman.postanalysis.feature.view.documentpicker.DocumentPickerButton
-import ru.pyroman.postanalysis.feature.view.post.PostAnalysisErrorView
-import ru.pyroman.postanalysis.feature.view.post.PostAnalysisLoadingView
-import ru.pyroman.postanalysis.feature.viewmodel.PostAnalysisViewModel
-import ru.pyroman.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
+import ru.pyroman.medanalytica.postanalysis.feature.state.PostAnalysisState
+import ru.pyroman.medanalytica.postanalysis.feature.view.documentpicker.DocumentPickerButton
+import ru.pyroman.medanalytica.postanalysis.feature.view.post.PostAnalysisErrorView
+import ru.pyroman.medanalytica.postanalysis.feature.view.post.PostAnalysisLoadingView
+import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModel
+import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
 
 @Composable
 fun PostAnalysisScreenView(
