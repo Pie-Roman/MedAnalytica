@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.feature.login.view.LoginScreenView
+import ru.pyroman.medanalytica.feature.register.view.RegisterScreenView
 import ru.pyroman.medanalytica.feature.view.AnalysisGraphScreenView
 import ru.pyroman.medanalytica.postanalysis.feature.view.PostAnalysisScreenView
 
@@ -16,7 +17,7 @@ fun Navigation(
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.route,
+        startDestination = Screen.Register.route,
     ) {
         composable(route = Screen.Start.route) {
 
@@ -28,7 +29,10 @@ fun Navigation(
             )
         }
         composable(route = Screen.Register.route) {
-
+            RegisterScreenView(
+                viewModelFactory = viewModelsFactory.registerViewModelFactory,
+                navController = navController,
+            )
         }
         composable(route = Screen.AnalysisGraph.route) {
             AnalysisGraphScreenView(

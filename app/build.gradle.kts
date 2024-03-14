@@ -58,10 +58,12 @@ dependencies {
     implementation(project(":feature:analysis-graph-feature"))
     implementation(project(":feature:post-analysis-feature"))
 
-    implementation(project(":data:analysis-graph-data"))
-    implementation(project(":data:post-analysis-data"))
-    implementation(project(":data:uid-data"))
-    implementation(project(":data:token-data"))
+    api(project(":data:analysis-graph-data"))
+    api(project(":data:post-analysis-data"))
+    api(project(":data:login-data"))
+    api(project(":data:register-data"))
+    api(project(":data:uid-data"))
+    api(project(":data:token-data"))
 
     // Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
