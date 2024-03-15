@@ -53,17 +53,19 @@ private fun PostAnalysisView(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        TextButton(
-            colors = ButtonDefaults.buttonColors(Color.Transparent),
-            modifier = Modifier
-                .padding(top = 24.dp)
-                .align(Alignment.TopStart),
-            onClick = onBackClick,
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_arrow_back),
-                contentDescription = null,
-            )
+        if (state != PostAnalysisState.Loading) {
+            TextButton(
+                colors = ButtonDefaults.buttonColors(Color.Transparent),
+                modifier = Modifier
+                    .padding(top = 24.dp)
+                    .align(Alignment.TopStart),
+                onClick = onBackClick,
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    contentDescription = null,
+                )
+            }
         }
 
         when (state) {
