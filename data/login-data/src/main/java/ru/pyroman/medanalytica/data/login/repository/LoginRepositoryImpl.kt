@@ -1,5 +1,6 @@
 package ru.pyroman.medanalytica.data.login.repository
 
+import retrofit2.HttpException
 import ru.pyroman.medanalytica.data.login.network.LoginNetworkDataSource
 import ru.pyroman.medanalytica.data.login.network.LoginNetworkMapper
 import ru.pyroman.medanalytica.domain.login.model.LoginData
@@ -28,7 +29,10 @@ class LoginRepositoryImpl @Inject internal constructor(
 
             LoginResult.Success
         } catch (error: Throwable) {
-            LoginResult.Failure("Ошибка авторизации!")
+            val message = (error as? HttpException)?.let {
+                error.message
+            } ?: "Ошибка авторизации!"
+            LoginResult.Failure(message)
         }
     }
 }
