@@ -22,6 +22,7 @@ import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +53,10 @@ fun AnalysisGraphScreenView(
 ) {
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
+    LaunchedEffect(Unit) {
+        viewModel.onRefresh()
+    }
+
     AnalysisGraphListView(
         state = state,
         onIdle = viewModel::onRefresh,
@@ -59,7 +64,6 @@ fun AnalysisGraphScreenView(
             viewModel.onLogoutClick(
                 onComplete = {
                     navController.navigate(Screen.Start.route)
-                    viewModel.reset()
                 }
             )
         },

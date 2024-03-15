@@ -6,8 +6,6 @@ sealed class RegisterState {
 
     data object Loading : RegisterState()
 
-    data object Success : RegisterState()
-
     data object Failure : RegisterState()
 
     data object Error : RegisterState()

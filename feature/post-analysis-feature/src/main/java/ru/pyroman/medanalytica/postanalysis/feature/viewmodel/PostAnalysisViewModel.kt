@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisData
+import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisResult
 import ru.pyroman.medanalytica.domain.postanalysis.repository.PostAnalysisRepository
 import ru.pyroman.medanalytica.postanalysis.feature.state.PostAnalysisState
 import java.io.BufferedInputStream
@@ -24,11 +25,10 @@ class PostAnalysisViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<PostAnalysisState>(PostAnalysisState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun reset() = viewModelScope.launch {
-        _viewState.emit(PostAnalysisState.Idle)
-    }
-
-    fun onFileInput(uri: Uri) = viewModelScope.launch {
+    fun onFileInput(
+        uri: Uri,
+        onSuccess: () -> Unit,
+    ) = viewModelScope.launch {
         if (_viewState.value == PostAnalysisState.Loading) {
             return@launch
         }
@@ -41,9 +41,15 @@ class PostAnalysisViewModel @Inject internal constructor(
                     file = readFile(uri),
                 )
                 val result = postAnalysisRepository.postAnalysis(postAnalysisData)
-                PostAnalysisState.Success(
-                    result = result,
-                )
+                when (result) {
+                    PostAnalysisResult.SUCCESS -> {
+                        withContext(Dispatchers.Main) {
+                            onSuccess()
+                        }
+                        PostAnalysisState.Idle
+                    }
+                    PostAnalysisResult.FAILURE -> PostAnalysisState.Error
+                }
             } catch (error: Throwable) {
                 PostAnalysisState.Error
             }

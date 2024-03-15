@@ -1,6 +1,7 @@
 package ru.pyroman.medanalytica.feature.start.view
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -16,28 +17,27 @@ fun StartScreenView(
 ) {
     val state by viewModel.viewState.collectAsStateWithLifecycle()
 
+    LaunchedEffect(Unit) {
+        viewModel.checkIsLoggedIn(
+            onLoggedIn = {
+                navController.navigate(Screen.AnalysisGraph.route)
+            },
+        )
+    }
+
     when (state) {
         is StartState.Idle -> {
-            viewModel.checkIsLoggedIn()
-        }
-        is StartState.Loading -> {
-
-        }
-        is StartState.NotLoggedIn -> {
             StartView(
                 onLoginClick = {
                     navController.navigate(Screen.Login.route)
-                    viewModel.reset()
                 },
                 onRegisterClick = {
                     navController.navigate(Screen.Register.route)
-                    viewModel.reset()
                 }
             )
         }
-        is StartState.ProceedNext -> {
-            navController.navigate(Screen.AnalysisGraph.route)
-            viewModel.reset()
+        is StartState.Loading -> {
+
         }
         is StartState.Error -> {
 

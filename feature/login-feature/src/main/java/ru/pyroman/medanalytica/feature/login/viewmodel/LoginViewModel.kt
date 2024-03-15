@@ -20,11 +20,10 @@ class LoginViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<LoginState>(LoginState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun reset() = viewModelScope.launch {
-        _viewState.emit(LoginState.Idle)
-    }
-
-    fun onLogin(loginData: LoginData) = viewModelScope.launch {
+    fun onLogin(
+        loginData: LoginData,
+        onSuccess: () -> Unit,
+    ) = viewModelScope.launch {
         if (_viewState.value == LoginState.Loading) {
             return@launch
         }
@@ -35,7 +34,12 @@ class LoginViewModel @Inject internal constructor(
             try {
                 val result = loginRepository.login(loginData)
                 when (result) {
-                    LoginResult.SUCCESS -> LoginState.Success
+                    LoginResult.SUCCESS -> {
+                        withContext(Dispatchers.Main) {
+                            onSuccess()
+                        }
+                        LoginState.Idle
+                    }
                     LoginResult.FAILURE -> LoginState.Failure
                 }
             } catch (error: Throwable) {

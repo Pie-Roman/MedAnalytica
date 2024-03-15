@@ -23,11 +23,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.domain.register.model.RegisterData
-import ru.pyroman.medanalytica.feature.register.state.RegisterState
 import ru.pyroman.medanalytica.feature.register.viewmodel.RegisterViewModel
 import ru.pyroman.medanalytica.ui.view.InputView
 import ru.pyroman.medanalytica.ui.view.StyledTextButton
@@ -38,15 +36,12 @@ fun RegisterScreenView(
     viewModel: RegisterViewModel,
     navController: NavController,
 ) {
-    val state by viewModel.viewState.collectAsStateWithLifecycle()
-
-    if (state == RegisterState.Success) {
-        navController.navigate(Screen.AnalysisGraph.route)
-        viewModel.reset()
-    }
-
     RegisterView(
-        onRegister = viewModel::onRegister,
+        onRegister = { registerData ->
+            viewModel.onRegister(registerData) {
+                navController.navigate(Screen.AnalysisGraph.route)
+            }
+        },
         onBack = { navController.navigateUp() }
     )
 }

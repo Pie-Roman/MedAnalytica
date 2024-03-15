@@ -20,11 +20,10 @@ class RegisterViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<RegisterState>(RegisterState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun reset() = viewModelScope.launch {
-        _viewState.emit(RegisterState.Idle)
-    }
-
-    fun onRegister(registerData: RegisterData) = viewModelScope.launch {
+    fun onRegister(
+        registerData: RegisterData,
+        onSuccess: () -> Unit,
+    ) = viewModelScope.launch {
         if (_viewState.value == RegisterState.Loading) {
             return@launch
         }
@@ -35,7 +34,12 @@ class RegisterViewModel @Inject internal constructor(
             try {
                 val result = registerRepository.register(registerData)
                 when (result) {
-                    RegisterResult.SUCCESS -> RegisterState.Success
+                    RegisterResult.SUCCESS -> {
+                        withContext(Dispatchers.Main) {
+                            onSuccess()
+                        }
+                        RegisterState.Idle
+                    }
                     RegisterResult.FAILURE -> RegisterState.Failure
                 }
             } catch (error: Throwable) {

@@ -32,20 +32,21 @@ fun PostAnalysisScreenView(
 
     PostAnalysisView(
         state = state,
-        navController = navController,
-        onFileInput = viewModel::onFileInput,
-        onSuccess = {
+        onBackClick = {
             navController.navigateUp()
-            viewModel.reset()
-        }
+        },
+        onFileInput = { uri ->
+            viewModel.onFileInput(uri) {
+                navController.navigateUp()
+            }
+        },
     )
 }
 
 @Composable
 private fun PostAnalysisView(
     state: PostAnalysisState,
-    navController: NavController,
-    onSuccess: () -> Unit,
+    onBackClick: () -> Unit,
     onFileInput: (Uri) -> Unit,
 ) {
     Box(
@@ -57,9 +58,7 @@ private fun PostAnalysisView(
             modifier = Modifier
                 .padding(top = 24.dp)
                 .align(Alignment.TopStart),
-            onClick = {
-                navController.navigateUp()
-            }
+            onClick = onBackClick,
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_arrow_back),
@@ -75,9 +74,6 @@ private fun PostAnalysisView(
             }
             is PostAnalysisState.Loading -> {
                 PostAnalysisLoadingView()
-            }
-            is PostAnalysisState.Success -> {
-                onSuccess()
             }
             is PostAnalysisState.Error -> {
                 PostAnalysisErrorView(

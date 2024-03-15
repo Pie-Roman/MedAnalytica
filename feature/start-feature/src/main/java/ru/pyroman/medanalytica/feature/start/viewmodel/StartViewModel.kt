@@ -18,21 +18,21 @@ class StartViewModel @Inject internal constructor(
     private val _viewState = MutableStateFlow<StartState>(StartState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun reset() = viewModelScope.launch {
-        _viewState.emit(StartState.Idle)
-    }
-
-    fun checkIsLoggedIn() = viewModelScope.launch {
+    fun checkIsLoggedIn(
+        onLoggedIn: () -> Unit,
+    ) = viewModelScope.launch {
         _viewState.emit(StartState.Loading)
 
         val newState = withContext(Dispatchers.IO) {
             val isLoggedIn = startRepository.isLoggedIn()
 
             if (isLoggedIn) {
-                StartState.ProceedNext
-            } else {
-                StartState.NotLoggedIn
+                withContext(Dispatchers.Main) {
+                    onLoggedIn()
+                }
             }
+
+            StartState.Idle
         }
 
         _viewState.emit(newState)

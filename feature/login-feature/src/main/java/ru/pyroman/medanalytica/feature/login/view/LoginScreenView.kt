@@ -23,11 +23,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.domain.login.model.LoginData
-import ru.pyroman.medanalytica.feature.login.state.LoginState
 import ru.pyroman.medanalytica.feature.login.viewmodel.LoginViewModel
 import ru.pyroman.medanalytica.ui.view.InputView
 import ru.pyroman.medanalytica.ui.view.StyledTextButton
@@ -38,15 +36,12 @@ fun LoginScreenView(
     viewModel: LoginViewModel,
     navController: NavController,
 ) {
-    val state by viewModel.viewState.collectAsStateWithLifecycle()
-
-    if (state == LoginState.Success) {
-        navController.navigate(Screen.AnalysisGraph.route)
-        viewModel.reset()
-    }
-
     LoginView(
-        onLogin = viewModel::onLogin,
+        onLogin = { loginData ->
+            viewModel.onLogin(loginData) {
+                navController.navigate(Screen.AnalysisGraph.route)
+            }
+        },
         onBack = { navController.navigateUp() }
     )
 }

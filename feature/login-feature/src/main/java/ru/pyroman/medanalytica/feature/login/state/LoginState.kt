@@ -6,8 +6,6 @@ sealed class LoginState {
 
     data object Loading : LoginState()
 
-    data object Success : LoginState()
-
     data object Failure : LoginState()
 
     data object Error : LoginState()
