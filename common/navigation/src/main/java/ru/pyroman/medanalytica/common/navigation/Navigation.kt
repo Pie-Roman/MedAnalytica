@@ -1,5 +1,6 @@
 package ru.pyroman.medanalytica.common.navigation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
@@ -31,30 +32,40 @@ fun Navigation(
         ) },
     ) {
         composable(route = Screen.Start.route) {
+            BackHandler {}
+
             StartScreenView(
                 viewModel = viewModelsRegistry.startViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.Login.route) {
+            BackHandler {}
+
             LoginScreenView(
                 viewModel = viewModelsRegistry.loginViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.Register.route) {
+            BackHandler {}
+
             RegisterScreenView(
                 viewModel = viewModelsRegistry.registerViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.AnalysisGraph.route) {
+            BackHandler {}
+
             AnalysisGraphScreenView(
                 viewModel = viewModelsRegistry.analysisGraphViewModel,
                 navController = navController,
             )
         }
         composable(route = Screen.PostAnalysis.route) {
+            BackHandler {}
+
             PostAnalysisScreenView(
                 viewModel = viewModelsRegistry.postAnalysisViewModel,
                 navController = navController,
