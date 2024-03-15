@@ -6,5 +6,5 @@ sealed class PostAnalysisState {
 
     data object Loading : PostAnalysisState()
 
-    data object Error : PostAnalysisState()
+    data class Error(val message: String) : PostAnalysisState()
 }

@@ -1,6 +1,7 @@
 package ru.pyroman.medanalytica.domain.postanalysis.model
 
-enum class PostAnalysisResult {
-    SUCCESS,
-    FAILURE
+sealed class PostAnalysisResult {
+    data object Success : PostAnalysisResult()
+
+    data class Error(val message: String) : PostAnalysisResult()
 }

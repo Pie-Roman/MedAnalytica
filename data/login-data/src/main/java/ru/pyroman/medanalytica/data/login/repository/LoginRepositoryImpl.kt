@@ -26,9 +26,9 @@ class LoginRepositoryImpl @Inject internal constructor(
             uidRepository.setUid(uid)
             tokenRepository.setToken(token)
 
-            LoginResult.SUCCESS
+            LoginResult.Success
         } catch (error: Throwable) {
-            LoginResult.FAILURE
+            LoginResult.Failure("Ошибка авторизации!")
         }
     }
 }

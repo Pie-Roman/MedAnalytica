@@ -40,18 +40,17 @@ class PostAnalysisViewModel @Inject internal constructor(
                 val postAnalysisData = PostAnalysisData(
                     file = readFile(uri),
                 )
-                val result = postAnalysisRepository.postAnalysis(postAnalysisData)
-                when (result) {
-                    PostAnalysisResult.SUCCESS -> {
+                when (val result = postAnalysisRepository.postAnalysis(postAnalysisData)) {
+                    is PostAnalysisResult.Success -> {
                         withContext(Dispatchers.Main) {
                             onSuccess()
                         }
                         PostAnalysisState.Idle
                     }
-                    PostAnalysisResult.FAILURE -> PostAnalysisState.Error
+                    is PostAnalysisResult.Error -> PostAnalysisState.Error(result.message)
                 }
             } catch (error: Throwable) {
-                PostAnalysisState.Error
+                PostAnalysisState.Error("Неизвестная ошибка! Пожалуйста, повторите попытку позже")
             }
         }
 

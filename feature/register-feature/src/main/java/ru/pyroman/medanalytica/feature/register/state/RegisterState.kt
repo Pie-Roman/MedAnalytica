@@ -6,7 +6,7 @@ sealed class RegisterState {
 
     data object Loading : RegisterState()
 
-    data object Failure : RegisterState()
+    data class Failure(val message: String) : RegisterState()
 
     data object Error : RegisterState()
 }

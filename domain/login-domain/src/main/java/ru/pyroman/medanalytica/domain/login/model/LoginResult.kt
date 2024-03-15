@@ -1,6 +1,8 @@
 package ru.pyroman.medanalytica.domain.login.model
 
-enum class LoginResult {
-    SUCCESS,
-    FAILURE,
+sealed class LoginResult {
+    data object Success : LoginResult()
+    data class Failure(
+        val message: String,
+    ) : LoginResult()
 }

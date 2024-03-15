@@ -77,6 +77,7 @@ private fun PostAnalysisView(
             }
             is PostAnalysisState.Error -> {
                 PostAnalysisErrorView(
+                    errorMessage = state.message,
                     onFileInput = onFileInput,
                 )
             }

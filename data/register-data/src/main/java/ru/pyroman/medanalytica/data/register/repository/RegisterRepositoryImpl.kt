@@ -26,9 +26,9 @@ class RegisterRepositoryImpl @Inject internal constructor(
             uidRepository.setUid(uid)
             tokenRepository.setToken(token)
 
-            RegisterResult.SUCCESS
+            RegisterResult.Success
         } catch (error: Throwable) {
-            RegisterResult.FAILURE
+            RegisterResult.Failure("Ошибка регистрации!")
         }
     }
 }

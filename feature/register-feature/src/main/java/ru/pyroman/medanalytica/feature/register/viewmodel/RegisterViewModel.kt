@@ -32,15 +32,14 @@ class RegisterViewModel @Inject internal constructor(
 
         val newState = withContext(Dispatchers.IO) {
             try {
-                val result = registerRepository.register(registerData)
-                when (result) {
-                    RegisterResult.SUCCESS -> {
+                when (val result = registerRepository.register(registerData)) {
+                    is RegisterResult.Success -> {
                         withContext(Dispatchers.Main) {
                             onSuccess()
                         }
                         RegisterState.Idle
                     }
-                    RegisterResult.FAILURE -> RegisterState.Failure
+                    is RegisterResult.Failure -> RegisterState.Failure(result.message)
                 }
             } catch (error: Throwable) {
                 RegisterState.Error

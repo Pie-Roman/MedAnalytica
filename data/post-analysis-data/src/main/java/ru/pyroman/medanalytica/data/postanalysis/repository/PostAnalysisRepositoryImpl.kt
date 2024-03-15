@@ -26,9 +26,11 @@ class PostAnalysisRepositoryImpl @Inject internal constructor(
                 token = token,
                 postAnalysis = dto,
             )
-            PostAnalysisResult.SUCCESS
+            PostAnalysisResult.Success
         } catch (error: Throwable) {
-            PostAnalysisResult.FAILURE
+            PostAnalysisResult.Error(
+                message = "Ошибка загрузки анализа, повторите попытку"
+            )
         }
     }
 }

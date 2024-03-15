@@ -32,15 +32,14 @@ class LoginViewModel @Inject internal constructor(
 
         val newState = withContext(Dispatchers.IO) {
             try {
-                val result = loginRepository.login(loginData)
-                when (result) {
-                    LoginResult.SUCCESS -> {
+                when (val result = loginRepository.login(loginData)) {
+                    is LoginResult.Success -> {
                         withContext(Dispatchers.Main) {
                             onSuccess()
                         }
                         LoginState.Idle
                     }
-                    LoginResult.FAILURE -> LoginState.Failure
+                    is LoginResult.Failure -> LoginState.Failure(result.message)
                 }
             } catch (error: Throwable) {
                 LoginState.Error

@@ -1,6 +1,7 @@
 package ru.pyroman.medanalytica.feature.login.view
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,10 +24,13 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.domain.login.model.LoginData
+import ru.pyroman.medanalytica.feature.login.state.LoginState
 import ru.pyroman.medanalytica.feature.login.viewmodel.LoginViewModel
+import ru.pyroman.medanalytica.ui.view.ErrorView
 import ru.pyroman.medanalytica.ui.view.InputView
 import ru.pyroman.medanalytica.ui.view.StyledTextButton
 import ru.pyroman.medanalytica.base.uikit.R as UiKitR
@@ -36,7 +40,10 @@ fun LoginScreenView(
     viewModel: LoginViewModel,
     navController: NavController,
 ) {
+    val state by viewModel.viewState.collectAsStateWithLifecycle()
+
     LoginView(
+        state = state,
         onLogin = { loginData ->
             viewModel.onLogin(loginData) {
                 navController.navigate(Screen.AnalysisGraph.route)
@@ -48,83 +55,95 @@ fun LoginScreenView(
 
 @Composable
 private fun LoginView(
+    state: LoginState,
     onLogin: (LoginData) -> Unit,
     onBack: () -> Unit,
 ) {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 32.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        var loginText by remember { mutableStateOf("") }
-        var passwordText by remember { mutableStateOf("") }
-        var isPasswordVisible by remember { mutableStateOf(false) }
+    Box {
+        if (state is LoginState.Failure) {
+            ErrorView(
+                modifier = Modifier
+                    .align(Alignment.TopCenter),
+                text = state.message,
+            )
+        }
 
-        InputView(
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            inputTextHint = "Логин",
-            inputText = loginText,
-            onValueChange = { newValue ->
-                loginText = newValue
-            }
-        )
+                .align(Alignment.Center)
+                .padding(horizontal = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            var loginText by remember { mutableStateOf("") }
+            var passwordText by remember { mutableStateOf("") }
+            var isPasswordVisible by remember { mutableStateOf(false) }
 
-        Spacer(modifier = Modifier.height(22.dp))
-
-        InputView(
-            modifier = Modifier
-                .fillMaxWidth(),
-            inputTextHint = "Пароль",
-            inputText = passwordText,
-            visualTransformation = if (isPasswordVisible)
-                VisualTransformation.None else PasswordVisualTransformation(),
-            onValueChange = { newValue ->
-                passwordText = newValue
-            },
-            trailingIcon = {
-                val image = if (isPasswordVisible)
-                    Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-
-                IconButton(
-                    onClick = { isPasswordVisible = !isPasswordVisible}
-                ) {
-                    Icon(
-                        imageVector  = image,
-                        contentDescription = null,
-                        tint = colorResource(id = UiKitR.color.gray),
-                    )
+            InputView(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                inputTextHint = "Логин",
+                inputText = loginText,
+                onValueChange = { newValue ->
+                    loginText = newValue
                 }
-            }
-        )
+            )
 
-        Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(22.dp))
 
-        StyledTextButton(
-            modifier = Modifier
-                .fillMaxWidth(),
-            text = "Войти",
-            textColor = Color.White,
-            color = colorResource(id = UiKitR.color.lightBlue),
-            onClick = {
-                val loginData = LoginData(
-                    login = loginText,
-                    password = passwordText,
-                )
-                onLogin(loginData)
-            },
-        )
+            InputView(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                inputTextHint = "Пароль",
+                inputText = passwordText,
+                visualTransformation = if (isPasswordVisible)
+                    VisualTransformation.None else PasswordVisualTransformation(),
+                onValueChange = { newValue ->
+                    passwordText = newValue
+                },
+                trailingIcon = {
+                    val image = if (isPasswordVisible)
+                        Icons.Filled.Visibility else Icons.Filled.VisibilityOff
 
-        Spacer(modifier = Modifier.height(8.dp))
+                    IconButton(
+                        onClick = { isPasswordVisible = !isPasswordVisible}
+                    ) {
+                        Icon(
+                            imageVector  = image,
+                            contentDescription = null,
+                            tint = colorResource(id = UiKitR.color.gray),
+                        )
+                    }
+                }
+            )
 
-        StyledTextButton(
-            modifier = Modifier
-                .fillMaxWidth(),
-            text = "Назад",
-            textColor = colorResource(id = UiKitR.color.lightBlue),
-            color = Color.Transparent,
-            onClick = onBack,
-        )
+            Spacer(modifier = Modifier.height(32.dp))
+
+            StyledTextButton(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = "Войти",
+                textColor = Color.White,
+                color = colorResource(id = UiKitR.color.lightBlue),
+                onClick = {
+                    val loginData = LoginData(
+                        login = loginText,
+                        password = passwordText,
+                    )
+                    onLogin(loginData)
+                },
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            StyledTextButton(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = "Назад",
+                textColor = colorResource(id = UiKitR.color.lightBlue),
+                color = Color.Transparent,
+                onClick = onBack,
+            )
+        }
     }
 }
