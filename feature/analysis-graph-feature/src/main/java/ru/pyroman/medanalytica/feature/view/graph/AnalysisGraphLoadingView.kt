@@ -46,7 +46,7 @@ fun AnalysisGraphLoadingView(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(256.dp)
+                .height(216.dp)
                 .background(color = colorResource(id = R.color.gray)),
         )
     }
