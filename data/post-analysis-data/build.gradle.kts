@@ -23,6 +23,8 @@ dependencies {
     implementation(libs.retrofit.retrofit)
     implementation(libs.retrofit.converter)
 
+    implementation(libs.okhttp)
+
     // Coroutines
     implementation(libs.kotlinx.corountines.android)
 

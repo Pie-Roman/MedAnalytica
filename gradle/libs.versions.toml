@@ -12,6 +12,7 @@ vico = "1.14.0"
 lottie = "4.2.0"
 shimmer = "1.2.0"
 retrofit = "2.9.0"
+okhttp = "3.14.9"
 kotlinx = "1.7.3"
 dagger = "2.51"
 
@@ -44,6 +45,8 @@ lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "
 
 retrofit-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 
 kotlinx-corountines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx"}
 
