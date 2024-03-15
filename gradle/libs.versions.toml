@@ -10,6 +10,7 @@ security = "1.0.0"
 room = "2.6.1"
 vico = "1.14.0"
 lottie = "4.2.0"
+shimmer = "1.2.0"
 retrofit = "2.9.0"
 kotlinx = "1.7.3"
 dagger = "2.51"
@@ -28,6 +29,8 @@ androidx-compose-uitoolingpreview = { module = "androidx.compose.ui:ui-tooling-p
 androidx-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+
+valentinilk-shimmer-compose = { module = "com.valentinilk.shimmer:compose-shimmer", version.ref = "shimmer" }
 
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "security" }
 

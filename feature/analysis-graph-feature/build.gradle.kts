@@ -41,6 +41,8 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose)
 
+    implementation(libs.valentinilk.shimmer.compose)
+
     implementation(libs.vico.compose)
 
     implementation(libs.dagger)
