@@ -21,6 +21,8 @@ dependencies {
     api(project(":domain:token-domain"))
     api(project(":domain:register-domain"))
 
+    api(project(":common:utils"))
+
     // Retrofit
     implementation(libs.retrofit.retrofit)
     implementation(libs.retrofit.converter)

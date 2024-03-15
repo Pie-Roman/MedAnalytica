@@ -19,6 +19,8 @@ dependencies {
     api(project(":domain:uid-domain"))
     api(project(":domain:token-domain"))
 
+    api(project(":common:utils"))
+
     // Retrofit
     implementation(libs.retrofit.retrofit)
     implementation(libs.retrofit.converter)
