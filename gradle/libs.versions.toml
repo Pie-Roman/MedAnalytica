@@ -10,7 +10,9 @@ security = "1.0.0"
 room = "2.6.1"
 vico = "1.14.0"
 lottie = "4.2.0"
+shimmer = "1.2.0"
 retrofit = "2.9.0"
+okhttp = "3.14.9"
 kotlinx = "1.7.3"
 dagger = "2.51"
 
@@ -25,8 +27,11 @@ androidx-compose-foundation = { module = "androidx.compose.foundation:foundation
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 androidx-compose-uitooling = { module = "androidx.compose.ui:ui-tooling"}
 androidx-compose-uitoolingpreview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+
+valentinilk-shimmer-compose = { module = "com.valentinilk.shimmer:compose-shimmer", version.ref = "shimmer" }
 
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "security" }
 
@@ -40,6 +45,8 @@ lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "
 
 retrofit-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 
 kotlinx-corountines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx"}
 

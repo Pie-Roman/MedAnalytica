@@ -1,5 +1,7 @@
 package ru.pyroman.medanalytica.data.register.repository
 
+import retrofit2.HttpException
+import ru.pyroman.medanalytica.common.utils.extractMessage
 import ru.pyroman.medanalytica.data.register.network.RegisterNetworkDataSource
 import ru.pyroman.medanalytica.data.register.network.RegisterNetworkMapper
 import ru.pyroman.medanalytica.domain.register.model.RegisterData
@@ -26,9 +28,13 @@ class RegisterRepositoryImpl @Inject internal constructor(
             uidRepository.setUid(uid)
             tokenRepository.setToken(token)
 
-            RegisterResult.SUCCESS
+            RegisterResult.Success
         } catch (error: Throwable) {
-            RegisterResult.FAILURE
+            val defaultMessage = "Ошибка регистрации!"
+            val message = (error as? HttpException)?.let {
+                error.extractMessage(defaultMessage)
+            } ?: defaultMessage
+            RegisterResult.Failure(message)
         }
     }
 }

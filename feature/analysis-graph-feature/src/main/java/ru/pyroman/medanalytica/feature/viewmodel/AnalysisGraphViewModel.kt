@@ -12,8 +12,9 @@ import ru.pyroman.medanalytica.domain.analysisgraph.repository.AnalysisGraphRepo
 import ru.pyroman.medanalytica.feature.formatter.AnalysisGraphFormatter
 import ru.pyroman.medanalytica.feature.formatter.AnalysisGraphWarningFormatter
 import ru.pyroman.medanalytica.feature.state.AnalysisGraphState
+import javax.inject.Inject
 
-internal class AnalysisGraphViewModel internal constructor(
+class AnalysisGraphViewModel @Inject internal constructor(
     private val analysisGraphFormatter: AnalysisGraphFormatter,
     private val analysisGraphWarningFormatter: AnalysisGraphWarningFormatter,
     private val analysisGraphRepository: AnalysisGraphRepository,
@@ -40,10 +41,13 @@ internal class AnalysisGraphViewModel internal constructor(
         }
     }
 
-    fun onLogoutClick() = viewModelScope.launch {
+    fun onLogoutClick(
+        onComplete: () -> Unit,
+    ) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             analysisGraphRepository.clearCache()
         }
+        onComplete()
     }
 
     private suspend fun submitNewGraphListData(

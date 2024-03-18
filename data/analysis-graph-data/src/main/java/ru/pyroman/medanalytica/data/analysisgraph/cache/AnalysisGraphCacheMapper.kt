@@ -22,10 +22,12 @@ internal class AnalysisGraphCacheMapper @Inject constructor() {
 
     private fun mapAnalysisGraphData(dto: AnalysisGraphDataCacheDto): AnalysisGraphData {
         val analysisType = dto.type
+        val units = dto.units
         val points = dto.values.map(::mapAnalysisGraphPoint)
 
         return AnalysisGraphData(
             analysisType = analysisType,
+            units = units,
             points = points,
         )
     }
@@ -35,6 +37,7 @@ internal class AnalysisGraphCacheMapper @Inject constructor() {
 
         return AnalysisGraphDataCacheDto(
             type = model.analysisType,
+            units = model.units,
             values = points,
         )
 

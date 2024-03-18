@@ -25,9 +25,13 @@ class AnalysisGraphRepositoryImpl @Inject internal constructor(
             val graphListFromNetwork = getGraphListFromNetwork()
             setGraphListInCache(graphListFromNetwork)
             val graphListFromCache = getGraphListFromCache()
+            val warning = when {
+                graphListFromCache.isEmpty() -> AnalysisGraphListWarning.EMPTY
+                else -> null
+            }
             AnalysisGraphListData(
                 graphs = graphListFromCache,
-                warning = null,
+                warning = warning,
             )
         } catch (error: Throwable) {
             val graphListFromCache = getGraphListFromCache()
@@ -40,9 +44,13 @@ class AnalysisGraphRepositoryImpl @Inject internal constructor(
 
     override suspend fun searchGraphs(searchText: String): AnalysisGraphListData {
         val graphList =  searchGraphsInCache(searchText)
+        val warning = when {
+            graphList.isEmpty() -> AnalysisGraphListWarning.EMPTY_BY_SEARCH
+            else -> null
+        }
         return AnalysisGraphListData(
             graphs = graphList,
-            warning = null,
+            warning = warning,
         )
     }
 

@@ -1,6 +1,6 @@
 package ru.pyroman.medanalytica.feature.vo
 
 class AnalysisGraphDataVo(
-    val analysisType: String,
+    val title: String,
     val points: List<AnalysisGraphPointVo>,
 )

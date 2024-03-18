@@ -11,15 +11,19 @@ import ru.pyroman.medanalytica.domain.login.model.LoginData
 import ru.pyroman.medanalytica.domain.login.model.LoginResult
 import ru.pyroman.medanalytica.domain.login.repository.LoginRepository
 import ru.pyroman.medanalytica.feature.login.state.LoginState
+import javax.inject.Inject
 
-internal class LoginViewModel(
+class LoginViewModel @Inject internal constructor(
     private val loginRepository: LoginRepository,
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow<LoginState>(LoginState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun onLogin(loginData: LoginData) = viewModelScope.launch {
+    fun onLogin(
+        loginData: LoginData,
+        onSuccess: () -> Unit,
+    ) = viewModelScope.launch {
         if (_viewState.value == LoginState.Loading) {
             return@launch
         }
@@ -28,12 +32,15 @@ internal class LoginViewModel(
 
         val newState = withContext(Dispatchers.IO) {
             try {
-                val result = loginRepository.login(loginData)
-                when (result) {
-                    LoginResult.SUCCESS -> LoginState.Success
-                    LoginResult.FAILURE -> LoginState.Failure
+                when (val result = loginRepository.login(loginData)) {
+                    is LoginResult.Success -> {
+                        withContext(Dispatchers.Main) {
+                            onSuccess()
+                        }
+                        LoginState.Idle
+                    }
+                    is LoginResult.Failure -> LoginState.Failure(result.message)
                 }
-                LoginState.Success
             } catch (error: Throwable) {
                 LoginState.Error
             }

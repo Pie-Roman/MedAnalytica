@@ -11,24 +11,28 @@ import ru.pyroman.medanalytica.domain.start.repository.StartRepository
 import ru.pyroman.medanalytica.feature.start.state.StartState
 import javax.inject.Inject
 
-internal class StartViewModel @Inject constructor(
+class StartViewModel @Inject internal constructor(
     private val startRepository: StartRepository,
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow<StartState>(StartState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun checkIsLoggedIn() = viewModelScope.launch {
+    fun checkIsLoggedIn(
+        onLoggedIn: () -> Unit,
+    ) = viewModelScope.launch {
         _viewState.emit(StartState.Loading)
 
         val newState = withContext(Dispatchers.IO) {
             val isLoggedIn = startRepository.isLoggedIn()
 
             if (isLoggedIn) {
-                StartState.ProceedNext
-            } else {
-                StartState.NotLoggedIn
+                withContext(Dispatchers.Main) {
+                    onLoggedIn()
+                }
             }
+
+            StartState.Idle
         }
 
         _viewState.emit(newState)

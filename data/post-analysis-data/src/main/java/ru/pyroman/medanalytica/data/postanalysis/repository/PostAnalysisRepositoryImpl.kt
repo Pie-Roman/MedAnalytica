@@ -1,5 +1,7 @@
 package ru.pyroman.medanalytica.data.postanalysis.repository
 
+import retrofit2.HttpException
+import ru.pyroman.medanalytica.common.utils.extractMessage
 import ru.pyroman.medanalytica.data.postanalysis.network.PostAnalysisNetworkDataSource
 import ru.pyroman.medanalytica.data.postanalysis.network.PostAnalysisNetworkMapper
 import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisData
@@ -26,9 +28,15 @@ class PostAnalysisRepositoryImpl @Inject internal constructor(
                 token = token,
                 postAnalysis = dto,
             )
-            PostAnalysisResult.SUCCESS
+            PostAnalysisResult.Success
         } catch (error: Throwable) {
-            PostAnalysisResult.FAILURE
+            val defaultMessage = "Ошибка загрузки анализа, повторите попытку"
+            val message = (error as? HttpException)?.let {
+                error.extractMessage(defaultMessage)
+            } ?: defaultMessage
+            PostAnalysisResult.Error(
+                message = message
+            )
         }
     }
 }

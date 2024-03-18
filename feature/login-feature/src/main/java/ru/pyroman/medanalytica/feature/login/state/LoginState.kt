@@ -6,9 +6,9 @@ sealed class LoginState {
 
     data object Loading : LoginState()
 
-    data object Success : LoginState()
-
-    data object Failure : LoginState()
+    data class Failure(
+        val message: String,
+    ) : LoginState()
 
     data object Error : LoginState()
 }

@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 internal data class AnalysisGraphDataNetworkDto(
     @SerializedName("type") val type: String?,
-    @SerializedName("std") val std: Double?,
-    @SerializedName("min") val min: Double?,
-    @SerializedName("lastUpdatedAt") val lastUpdatedAt: Long?,
+    @SerializedName("units") val units: String?,
     @SerializedName("valuesWithCreationDates") val values: List<AnalysisGraphPointNetworkDto?>?,
 )

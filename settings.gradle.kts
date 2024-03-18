@@ -22,6 +22,7 @@ include(":base:uikit")
 // Common modules
 include(":common:navigation")
 include(":common:navigation:api")
+include(":common:utils")
 
 // Feature modules
 include(":feature:analysis-graph-feature")

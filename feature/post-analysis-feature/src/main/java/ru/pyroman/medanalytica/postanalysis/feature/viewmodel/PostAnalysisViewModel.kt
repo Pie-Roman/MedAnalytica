@@ -11,11 +11,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisData
+import ru.pyroman.medanalytica.domain.postanalysis.model.PostAnalysisResult
 import ru.pyroman.medanalytica.domain.postanalysis.repository.PostAnalysisRepository
 import ru.pyroman.medanalytica.postanalysis.feature.state.PostAnalysisState
 import java.io.BufferedInputStream
+import javax.inject.Inject
 
-internal class PostAnalysisViewModel(
+class PostAnalysisViewModel @Inject internal constructor(
     application: Application,
     private val postAnalysisRepository: PostAnalysisRepository,
 ) : AndroidViewModel(application) {
@@ -23,7 +25,10 @@ internal class PostAnalysisViewModel(
     private val _viewState = MutableStateFlow<PostAnalysisState>(PostAnalysisState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun onFileInput(uri: Uri) = viewModelScope.launch {
+    fun onFileInput(
+        uri: Uri,
+        onSuccess: () -> Unit,
+    ) = viewModelScope.launch {
         if (_viewState.value == PostAnalysisState.Loading) {
             return@launch
         }
@@ -35,12 +40,17 @@ internal class PostAnalysisViewModel(
                 val postAnalysisData = PostAnalysisData(
                     file = readFile(uri),
                 )
-                val result = postAnalysisRepository.postAnalysis(postAnalysisData)
-                PostAnalysisState.Success(
-                    result = result,
-                )
+                when (val result = postAnalysisRepository.postAnalysis(postAnalysisData)) {
+                    is PostAnalysisResult.Success -> {
+                        withContext(Dispatchers.Main) {
+                            onSuccess()
+                        }
+                        PostAnalysisState.Idle
+                    }
+                    is PostAnalysisResult.Error -> PostAnalysisState.Error(result.message)
+                }
             } catch (error: Throwable) {
-                PostAnalysisState.Error
+                PostAnalysisState.Error("Неизвестная ошибка! Пожалуйста, повторите попытку позже")
             }
         }
 

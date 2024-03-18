@@ -11,15 +11,19 @@ import ru.pyroman.medanalytica.domain.register.model.RegisterData
 import ru.pyroman.medanalytica.domain.register.model.RegisterResult
 import ru.pyroman.medanalytica.domain.register.repository.RegisterRepository
 import ru.pyroman.medanalytica.feature.register.state.RegisterState
+import javax.inject.Inject
 
-internal class RegisterViewModel(
+class RegisterViewModel @Inject internal constructor(
     private val registerRepository: RegisterRepository,
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow<RegisterState>(RegisterState.Idle)
     val viewState = _viewState.asStateFlow()
 
-    fun onRegister(registerData: RegisterData) = viewModelScope.launch {
+    fun onRegister(
+        registerData: RegisterData,
+        onSuccess: () -> Unit,
+    ) = viewModelScope.launch {
         if (_viewState.value == RegisterState.Loading) {
             return@launch
         }
@@ -28,12 +32,15 @@ internal class RegisterViewModel(
 
         val newState = withContext(Dispatchers.IO) {
             try {
-                val result = registerRepository.register(registerData)
-                when (result) {
-                    RegisterResult.SUCCESS -> RegisterState.Success
-                    RegisterResult.FAILURE -> RegisterState.Failure
+                when (val result = registerRepository.register(registerData)) {
+                    is RegisterResult.Success -> {
+                        withContext(Dispatchers.Main) {
+                            onSuccess()
+                        }
+                        RegisterState.Idle
+                    }
+                    is RegisterResult.Failure -> RegisterState.Failure(result.message)
                 }
-                RegisterState.Success
             } catch (error: Throwable) {
                 RegisterState.Error
             }

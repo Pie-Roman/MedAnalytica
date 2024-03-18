@@ -1,8 +1,14 @@
 package ru.pyroman.medanalytica.feature.view
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -16,6 +22,7 @@ import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +35,6 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.feature.analysisgraph.R
@@ -38,26 +44,34 @@ import ru.pyroman.medanalytica.feature.view.graphlist.AnalysisGraphListLoadingVi
 import ru.pyroman.medanalytica.feature.view.graphlist.AnalysisGraphListSuccessView
 import ru.pyroman.medanalytica.feature.view.search.AnalysisGraphSearchView
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModel
-import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
 import ru.pyroman.medanalytica.base.uikit.R as UiKitR
 
 @Composable
 fun AnalysisGraphScreenView(
-    viewModelFactory: AnalysisGraphViewModelFactory,
+    viewModel: AnalysisGraphViewModel,
     navController: NavController,
 ) {
-    val viewModel: AnalysisGraphViewModel = viewModel(
-        factory = viewModelFactory,
-    )
     val state by viewModel.viewState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) {
+        viewModel.onRefresh()
+    }
 
     AnalysisGraphListView(
         state = state,
-        navController = navController,
         onIdle = viewModel::onRefresh,
-        onLogoutClick = viewModel::onLogoutClick,
+        onLogoutClick = {
+            viewModel.onLogoutClick(
+                onComplete = {
+                    navController.navigate(Screen.Start.route)
+                }
+            )
+        },
         onRefresh = viewModel::onRefresh,
         onSearchInput = viewModel::onSearchInput,
+        onAddAnalysisClick = {
+            navController.navigate(Screen.PostAnalysis.route)
+        }
     )
 }
 
@@ -65,11 +79,11 @@ fun AnalysisGraphScreenView(
 @Composable
 fun AnalysisGraphListView(
     state: AnalysisGraphState,
-    navController: NavController,
     onIdle: () -> Unit,
     onLogoutClick: () -> Unit,
     onRefresh: () -> Unit,
     onSearchInput: (String) -> Unit,
+    onAddAnalysisClick: () -> Unit,
 ) {
     val isRefreshing = state == AnalysisGraphState.Loading
     val pullRefreshState = rememberPullRefreshState(
@@ -94,39 +108,51 @@ fun AnalysisGraphListView(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
         ) {
-            TextButton(
-                colors = ButtonDefaults.buttonColors(Color.Transparent),
+            Row(
                 modifier = Modifier
-                    .align(Alignment.End)
+                    .fillMaxWidth()
                     .padding(
                         top = 32.dp,
-                        bottom = 16.dp,
                     ),
-                onClick = {
-                    navController.navigate(Screen.Start.route)
-                    onLogoutClick()
-                },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_logout),
-                    contentDescription = null,
+                Text(
+                    text = "Анализы",
+                    fontSize = TextUnit(28f, TextUnitType.Sp),
+                    fontWeight = FontWeight.Bold,
                 )
-            }
 
-            Text(
-                text = "Анализы",
-                fontSize = TextUnit(28f, TextUnitType.Sp),
-                fontWeight = FontWeight.Bold,
-            )
+                TextButton(
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
+                    onClick = {
+                        onLogoutClick()
+                    },
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_logout),
+                        contentDescription = null,
+                    )
+                }
+            }
 
             AnalysisGraphSearchView(
                 modifier = Modifier
                     .padding(
-                        vertical = 16.dp,
+                        top = 8.dp,
+                        bottom = 16.dp,
                     ),
             ) { searchInput ->
                 onSearchInput(searchInput)
             }
+
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(color = colorResource(id = UiKitR.color.gray))
+                    .padding(vertical = 16.dp),
+            )
 
             when (state) {
                 is AnalysisGraphState.Idle ->
@@ -138,6 +164,7 @@ fun AnalysisGraphListView(
                 is AnalysisGraphState.Success ->
                     AnalysisGraphListSuccessView(
                         vo = state.graphListVo,
+                        warningVo = state.warningVo,
                     )
 
                 is AnalysisGraphState.Error ->
@@ -154,9 +181,7 @@ fun AnalysisGraphListView(
             colors = ButtonDefaults.buttonColors(
                 colorResource(id = UiKitR.color.lightBlue)
             ),
-            onClick = {
-                navController.navigate(Screen.PostAnalysis.route)
-            },
+            onClick = onAddAnalysisClick,
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_add),

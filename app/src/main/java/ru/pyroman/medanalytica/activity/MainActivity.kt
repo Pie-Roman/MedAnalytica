@@ -10,31 +10,31 @@ import androidx.compose.ui.Modifier
 import ru.pyroman.medanalytica.activity.di.MainActivityComponent
 import ru.pyroman.medanalytica.application.MedanalyticaApplication
 import ru.pyroman.medanalytica.common.navigation.Navigation
-import ru.pyroman.medanalytica.common.navigation.ViewModelsFactory
-import ru.pyroman.medanalytica.feature.login.viewmodel.LoginViewModelFactory
-import ru.pyroman.medanalytica.feature.register.viewmodel.RegisterViewModelFactory
-import ru.pyroman.medanalytica.feature.start.viewmodel.StartViewModelFactory
-import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModelFactory
+import ru.pyroman.medanalytica.common.navigation.ViewModelsRegistry
+import ru.pyroman.medanalytica.feature.login.viewmodel.LoginViewModel
+import ru.pyroman.medanalytica.feature.register.viewmodel.RegisterViewModel
+import ru.pyroman.medanalytica.feature.start.viewmodel.StartViewModel
+import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModel
+import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModel
 import ru.pyroman.medanalytica.ui.theme.MedAnalyticaTheme
-import ru.pyroman.medanalytica.postanalysis.feature.viewmodel.PostAnalysisViewModelFactory
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var analysisGraphViewModelFactory: AnalysisGraphViewModelFactory
+    lateinit var analysisGraphViewModel: AnalysisGraphViewModel
 
     @Inject
-    lateinit var postAnalysisViewModelFactory: PostAnalysisViewModelFactory
+    lateinit var postAnalysisViewModel: PostAnalysisViewModel
 
     @Inject
-    lateinit var loginViewModelFactory: LoginViewModelFactory
+    lateinit var loginViewModel: LoginViewModel
 
     @Inject
-    lateinit var registerViewModelFactory: RegisterViewModelFactory
+    lateinit var registerViewModel: RegisterViewModel
 
     @Inject
-    lateinit var startViewModelFactory: StartViewModelFactory
+    lateinit var startViewModel: StartViewModel
 
     private lateinit var activityComponent: MainActivityComponent
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +53,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                    Navigation(
-                       viewModelsFactory = ViewModelsFactory(
-                           analysisGraphViewModelFactory = analysisGraphViewModelFactory,
-                           postAnalysisViewModelFactory = postAnalysisViewModelFactory,
-                           loginViewModelFactory = loginViewModelFactory,
-                           registerViewModelFactory = registerViewModelFactory,
-                           startViewModelFactory = startViewModelFactory,
+                       viewModelsRegistry = ViewModelsRegistry(
+                           analysisGraphViewModel = analysisGraphViewModel,
+                           postAnalysisViewModel = postAnalysisViewModel,
+                           loginViewModel = loginViewModel,
+                           registerViewModel= registerViewModel,
+                           startViewModel = startViewModel,
                        )
                    )
                 }
