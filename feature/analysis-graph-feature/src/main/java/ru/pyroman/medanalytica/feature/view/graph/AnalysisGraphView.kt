@@ -86,7 +86,13 @@ fun AnalysisGraphView(
                 )
             ),
             chartModelProducer = ChartEntryModelProducer(vo.points),
-            startAxis = rememberStartAxis(),
+            startAxis = rememberStartAxis(
+                label = TextComponent.Builder()
+                    .apply {
+                        color = Color.Black.toArgb()
+                    }
+                    .build()
+            ),
             bottomAxis = rememberBottomAxis(
                 label = TextComponent.Builder()
                     .apply { 
