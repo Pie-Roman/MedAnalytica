@@ -5,6 +5,7 @@ import ru.pyroman.medanalytica.activity.MainActivity
 import ru.pyroman.medanalytica.data.analysisgraph.di.AnalysisGraphDataModule
 import ru.pyroman.medanalytica.data.login.di.LoginDataModule
 import ru.pyroman.medanalytica.data.postanalysis.di.PostAnalysisDataModule
+import ru.pyroman.medanalytica.data.profile.di.ProfileDataModule
 import ru.pyroman.medanalytica.data.register.di.RegisterDataModule
 import ru.pyroman.medanalytica.data.start.di.StartDataModule
 import ru.pyroman.medanalytica.data.token.di.TokenDataModule
@@ -23,6 +24,7 @@ import ru.pyroman.medanalytica.feature.di.AnalysisGraphFeatureModule
     LoginDataModule::class,
     RegisterDataModule::class,
     StartDataModule::class,
+    ProfileDataModule::class,
 ])
 @MainActivityScope
 interface MainActivityComponent {

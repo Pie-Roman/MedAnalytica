@@ -12,4 +12,6 @@ sealed class Screen(
     data object Register : Screen(route = "register")
 
     data object Login : Screen(route = "login")
+
+    data object Profile : Screen(route = "profile")
 }

@@ -71,5 +71,10 @@ fun Navigation(
                 navController = navController,
             )
         }
+        composable(route = Screen.Profile.route) {
+            BackHandler {}
+
+
+        }
     }
 }
