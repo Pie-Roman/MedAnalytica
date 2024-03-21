@@ -22,7 +22,7 @@ fun Navigation(
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.Profile.route,
+        startDestination = Screen.Start.route,
         enterTransition = { slideIntoContainer(
             towards = AnimatedContentTransitionScope.SlideDirection.Start,
             animationSpec = tween(300)

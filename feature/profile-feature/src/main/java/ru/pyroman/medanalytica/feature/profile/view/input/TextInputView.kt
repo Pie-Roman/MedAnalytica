@@ -3,6 +3,7 @@ package ru.pyroman.medanalytica.feature.profile.view.input
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun TextInputView(
     modifier: Modifier = Modifier,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     inputText: String,
     inputTextHint: String,
     onValueChange: (String) -> Unit,
@@ -28,6 +30,7 @@ fun TextInputView(
             fontWeight = FontWeight.Normal,
         ),
         singleLine = true,
+        keyboardOptions = keyboardOptions,
         onValueChange = onValueChange,
         decorationBox = { textField ->
             Box(

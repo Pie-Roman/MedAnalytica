@@ -10,7 +10,5 @@ sealed class ProfileState {
 
     data class Success(val vo: ProfileDataVo) : ProfileState()
 
-    data class Failure(val message: String) : ProfileState()
-
     data object Error : ProfileState()
 }

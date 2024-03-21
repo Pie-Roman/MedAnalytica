@@ -1,39 +1,30 @@
 package ru.pyroman.medanalytica.feature.profile.view.profile
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import ru.pyroman.medanalytica.domain.profile.domain.BloodType
 import ru.pyroman.medanalytica.feature.profile.state.ProfileState
-import ru.pyroman.medanalytica.feature.profile.vo.DateOfBirthVo
 import ru.pyroman.medanalytica.feature.profile.vo.ProfileDataVo
 
 @Composable
 fun ProfileView(
-    state: ProfileState
+    state: ProfileState,
+    onIdle: () -> Unit,
+    onProfileInput: (ProfileDataVo) -> Unit,
 ) {
-    val dateOfBirthVo = DateOfBirthVo(
-        text = "4 марта 2024г.",
-        dateVo = null,
-    )
+    when (state) {
 
-    val vo = ProfileDataVo(
-        name = "User",
-        surname = "User",
-        dateOfBirth = dateOfBirthVo,
-        weight = "127",
-        height = "189",
-        bloodType = BloodType.AB_MINUS,
-    )
+        is ProfileState.Idle ->
+            onIdle()
 
-    ProfileSuccessView(
-        vo = vo
-    )
-}
+        is ProfileState.Loading ->
+            Unit
 
-@Preview(showBackground = true)
-@Composable
-fun ProfileView_Preview() {
-    ProfileView(
-        state = ProfileState.Idle
-    )
+        is ProfileState.Success ->
+            ProfileSuccessView(
+                vo = state.vo,
+                onProfileInput = onProfileInput,
+            )
+
+        is ProfileState.Error ->
+            Unit
+    }
 }

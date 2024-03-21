@@ -11,10 +11,12 @@ import ru.pyroman.medanalytica.data.start.di.StartDataModule
 import ru.pyroman.medanalytica.data.token.di.TokenDataModule
 import ru.pyroman.medanalytica.data.uid.di.UidDataModule
 import ru.pyroman.medanalytica.feature.di.AnalysisGraphFeatureModule
+import ru.pyroman.medanalytica.feature.profile.di.ProfileFeatureModule
 
 @Subcomponent(modules = [
     // Feature modules
     AnalysisGraphFeatureModule::class,
+    ProfileFeatureModule::class,
 
     // Data modules
     UidDataModule::class,

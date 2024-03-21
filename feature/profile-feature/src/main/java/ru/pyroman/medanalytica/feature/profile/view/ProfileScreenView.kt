@@ -16,5 +16,16 @@ fun ProfileScreenView(
 
     ProfileView(
         state = state,
+        onIdle = {
+            viewModel.onIdle()
+        },
+        onProfileInput = { profileDataVo ->
+            viewModel.onProfileInput(
+                profileDataVo = profileDataVo,
+                onSuccess = {
+                    navController.navigateUp()
+                }
+            )
+        }
     )
 }

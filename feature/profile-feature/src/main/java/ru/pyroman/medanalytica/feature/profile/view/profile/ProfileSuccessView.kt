@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,27 +21,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import ru.pyroman.medanalytica.domain.profile.domain.BloodType
+import ru.pyroman.medanalytica.feature.profile.utils.makeDateOfBirthVo
 import ru.pyroman.medanalytica.feature.profile.view.input.BloodTypeInputView
 import ru.pyroman.medanalytica.feature.profile.view.input.DateInputView
 import ru.pyroman.medanalytica.feature.profile.view.input.InputSectionView
 import ru.pyroman.medanalytica.feature.profile.view.input.InputSeparator
 import ru.pyroman.medanalytica.feature.profile.view.input.TextInputView
 import ru.pyroman.medanalytica.feature.profile.vo.DateOfBirthVo
-import ru.pyroman.medanalytica.feature.profile.vo.DateVo
 import ru.pyroman.medanalytica.feature.profile.vo.ProfileDataVo
 import ru.pyroman.medanalytica.ui.view.StyledTextButton
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 import ru.pyroman.medanalytica.base.uikit.R as UiKitR
 
 @Composable
-fun ProfileSuccessView(vo: ProfileDataVo) {
+fun ProfileSuccessView(
+    vo: ProfileDataVo,
+    onProfileInput: (ProfileDataVo) -> Unit,
+) {
     var nameText by remember { mutableStateOf(vo.name) }
     var surnameText by remember { mutableStateOf(vo.surname) }
     var dateOfBirth by remember { mutableStateOf(vo.dateOfBirth) }
@@ -99,19 +101,8 @@ fun ProfileSuccessView(vo: ProfileDataVo) {
             DateInputView(
                 vo = dateOfBirth,
                 onDateSelected = { year, month, day ->
-                    val calendar = Calendar.getInstance()
-                    calendar.set(year, month, day)
-                    val format = SimpleDateFormat("dd MMMM yyyyг.", Locale.getDefault())
-                    val text = format.format(calendar.time)
-                    dateOfBirth = DateOfBirthVo(
-                        text = text,
-                        dateVo = DateVo(
-                            year = year,
-                            month = month,
-                            day = day,
-                        )
-                    )
-
+                    val dateOfBirthVo = makeDateOfBirthVo(year, month, day)
+                    dateOfBirth = dateOfBirthVo
                 },
             )
 
@@ -120,6 +111,7 @@ fun ProfileSuccessView(vo: ProfileDataVo) {
             TextInputView(
                 inputText = weightText,
                 inputTextHint = "Вес",
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 onValueChange = { newWeight -> weightText = newWeight },
             )
 
@@ -128,6 +120,7 @@ fun ProfileSuccessView(vo: ProfileDataVo) {
             TextInputView(
                 inputText = heightText,
                 inputTextHint = "Рост",
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 onValueChange = { newHeight -> heightText = newHeight },
             )
         }
@@ -154,7 +147,15 @@ fun ProfileSuccessView(vo: ProfileDataVo) {
             textColor = Color.White,
             color = colorResource(id = UiKitR.color.lightBlue),
             onClick = {
-                
+                val profileDataVo = ProfileDataVo(
+                    name = nameText,
+                    surname = surnameText,
+                    dateOfBirth = dateOfBirth,
+                    weight = weightText,
+                    height = heightText,
+                    bloodType = bloodType,
+                )
+                onProfileInput(profileDataVo)
             }
         )
     }
@@ -177,5 +178,8 @@ fun ProfileSuccessView_Preview() {
         bloodType = BloodType.AB_MINUS,
     )
     
-    ProfileSuccessView(vo = vo)
+    ProfileSuccessView(
+        vo = vo,
+        onProfileInput = {},
+    )
 }
