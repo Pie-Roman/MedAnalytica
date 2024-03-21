@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.pyroman.medanalytica.common.navigation.api.Screen
 import ru.pyroman.medanalytica.feature.login.view.LoginScreenView
+import ru.pyroman.medanalytica.feature.profile.view.ProfileScreenView
 import ru.pyroman.medanalytica.feature.register.view.RegisterScreenView
 import ru.pyroman.medanalytica.feature.start.view.StartScreenView
 import ru.pyroman.medanalytica.feature.view.AnalysisGraphScreenView
@@ -21,7 +22,7 @@ fun Navigation(
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.Start.route,
+        startDestination = Screen.Profile.route,
         enterTransition = { slideIntoContainer(
             towards = AnimatedContentTransitionScope.SlideDirection.Start,
             animationSpec = tween(300)
@@ -74,7 +75,10 @@ fun Navigation(
         composable(route = Screen.Profile.route) {
             BackHandler {}
 
-
+            ProfileScreenView(
+                viewModel = viewModelsRegistry.profileViewModel,
+                navController = navController,
+            )
         }
     }
 }
