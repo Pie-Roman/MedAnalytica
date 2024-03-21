@@ -44,6 +44,8 @@ dependencies {
 
     implementation(libs.androidx.compose.material.icons)
 
+    implementation(libs.valentinilk.shimmer.compose)
+
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 }

@@ -9,6 +9,7 @@ fun ProfileView(
     state: ProfileState,
     onIdle: () -> Unit,
     onProfileInput: (ProfileDataVo) -> Unit,
+    onBack: () -> Unit,
 ) {
     when (state) {
 
@@ -16,15 +17,20 @@ fun ProfileView(
             onIdle()
 
         is ProfileState.Loading ->
-            Unit
+            ProfileLoadingView(
+                onBackClick = onBack,
+            )
 
         is ProfileState.Success ->
             ProfileSuccessView(
                 vo = state.vo,
                 onProfileInput = onProfileInput,
+                onBackClick = onBack,
             )
 
         is ProfileState.Error ->
-            Unit
+            ProfileErrorView(
+                onBackClick = onBack,
+            )
     }
 }

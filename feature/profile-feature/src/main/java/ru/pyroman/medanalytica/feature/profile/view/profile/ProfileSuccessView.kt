@@ -1,30 +1,23 @@
 package ru.pyroman.medanalytica.feature.profile.view.profile
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import ru.pyroman.medanalytica.domain.profile.domain.BloodType
 import ru.pyroman.medanalytica.feature.profile.utils.makeDateOfBirthVo
@@ -42,6 +35,7 @@ import ru.pyroman.medanalytica.base.uikit.R as UiKitR
 fun ProfileSuccessView(
     vo: ProfileDataVo,
     onProfileInput: (ProfileDataVo) -> Unit,
+    onBackClick: () -> Unit,
 ) {
     var nameText by remember { mutableStateOf(vo.name) }
     var surnameText by remember { mutableStateOf(vo.surname) }
@@ -57,21 +51,9 @@ fun ProfileSuccessView(
             .padding(horizontal = 16.dp)
 
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    top = 32.dp,
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            Text(
-                text = "Профиль",
-                fontSize = TextUnit(28f, TextUnitType.Sp),
-                fontWeight = FontWeight.Bold,
-            )
-        }
+        ProfileHeaderView(
+            onBackClick = onBackClick,
+        )
 
         Spacer(modifier = Modifier
             .height(12.dp)
@@ -87,7 +69,7 @@ fun ProfileSuccessView(
             InputSeparator()
 
             TextInputView(
-                inputText = nameText,
+                inputText = surnameText,
                 inputTextHint = "Фамилия",
                 onValueChange = { newSurname -> surnameText = newSurname },
             )
@@ -181,5 +163,6 @@ fun ProfileSuccessView_Preview() {
     ProfileSuccessView(
         vo = vo,
         onProfileInput = {},
+        onBackClick = {},
     )
 }

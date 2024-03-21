@@ -26,6 +26,9 @@ fun ProfileScreenView(
                     navController.navigateUp()
                 }
             )
+        },
+        onBack = {
+            navController.navigateUp()
         }
     )
 }

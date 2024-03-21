@@ -1,5 +1,6 @@
 package ru.pyroman.medanalytica.feature.profile.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +35,7 @@ class ProfileViewModel @Inject internal constructor(
                 val vo = profileFormatter.format(profileData)
                 ProfileState.Success(vo)
             } catch (error: Throwable) {
+                Log.e("err", error.stackTraceToString())
                 ProfileState.Error
             }
         }

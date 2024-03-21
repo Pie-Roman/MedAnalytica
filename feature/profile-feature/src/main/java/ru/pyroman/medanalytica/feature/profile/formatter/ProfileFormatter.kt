@@ -49,10 +49,18 @@ class ProfileFormatter {
     }
 
     private fun formatDateOfBirth(date: String): DateOfBirthVo {
-        return dateFormat.parse(date)?.let {
-            makeDateOfBirthVo(it)
-        } ?: DateOfBirthVo(
-            text = "",
+        return try {
+            dateFormat.parse(date)?.let {
+                makeDateOfBirthVo(it)
+            } ?: formatEmptyDateOfBirth()
+        } catch (error: Throwable) {
+            formatEmptyDateOfBirth()
+        }
+    }
+
+    private fun formatEmptyDateOfBirth(): DateOfBirthVo {
+        return DateOfBirthVo(
+            text = "Не выбрано",
             dateVo = null,
         )
     }
