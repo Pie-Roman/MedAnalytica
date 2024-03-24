@@ -27,20 +27,7 @@ class ProfileViewModel @Inject internal constructor(
             return@launch
         }
 
-        _viewState.emit(ProfileState.Loading)
-
-        val newState = withContext(Dispatchers.IO) {
-            try {
-                val profileData = profileRepository.getProfileData()
-                val vo = profileFormatter.format(profileData)
-                ProfileState.Success(vo)
-            } catch (error: Throwable) {
-                Log.e("err", error.stackTraceToString())
-                ProfileState.Error
-            }
-        }
-
-        _viewState.emit(newState)
+        loadProfile()
     }
 
     fun onProfileInput(
@@ -62,6 +49,27 @@ class ProfileViewModel @Inject internal constructor(
                 }
                 ProfileState.Idle
             } catch (error: Throwable) {
+                ProfileState.Error
+            }
+        }
+
+        _viewState.emit(newState)
+    }
+
+    fun onRetry() = viewModelScope.launch {
+        loadProfile()
+    }
+
+    private suspend fun loadProfile() {
+        _viewState.emit(ProfileState.Loading)
+
+        val newState = withContext(Dispatchers.IO) {
+            try {
+                val profileData = profileRepository.getProfileData()
+                val vo = profileFormatter.format(profileData)
+                ProfileState.Success(vo)
+            } catch (error: Throwable) {
+                Log.e("err", error.stackTraceToString())
                 ProfileState.Error
             }
         }

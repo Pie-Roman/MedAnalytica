@@ -10,6 +10,7 @@ fun ProfileView(
     onIdle: () -> Unit,
     onProfileInput: (ProfileDataVo) -> Unit,
     onBack: () -> Unit,
+    onRetry: () -> Unit,
 ) {
     when (state) {
 
@@ -31,6 +32,7 @@ fun ProfileView(
         is ProfileState.Error ->
             ProfileErrorView(
                 onBackClick = onBack,
+                onRetryClick = onRetry,
             )
     }
 }

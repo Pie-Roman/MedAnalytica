@@ -29,6 +29,9 @@ fun ProfileScreenView(
         },
         onBack = {
             navController.navigateUp()
+        },
+        onRetry = {
+            viewModel.onRetry()
         }
     )
 }
