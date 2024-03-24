@@ -10,7 +10,7 @@ import java.util.Locale
 
 class ProfileFormatter {
 
-    private val dateFormat = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     fun format(data: ProfileData): ProfileDataVo {
         val name = data.name
