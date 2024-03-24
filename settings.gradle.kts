@@ -30,6 +30,7 @@ include(":feature:post-analysis-feature")
 include(":feature:login-feature")
 include(":feature:register-feature")
 include(":feature:start-feature")
+include(":feature:profile-feature")
 
 // Domain modules
 include(":domain:analysis-graph-domain")
@@ -39,6 +40,7 @@ include(":domain:post-analysis-domain")
 include(":domain:login-domain")
 include(":domain:register-domain")
 include(":domain:start-domain")
+include(":domain:profile-domain")
 
 // Data modules
 include(":data:analysis-graph-data")
@@ -48,4 +50,5 @@ include(":data:post-analysis-data")
 include(":data:login-data")
 include(":data:register-data")
 include(":data:start-data")
+include(":data:profile-data")
  

@@ -18,6 +18,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -60,6 +62,9 @@ fun AnalysisGraphScreenView(
     AnalysisGraphListView(
         state = state,
         onIdle = viewModel::onRefresh,
+        onProfileClick = {
+            navController.navigate(Screen.Profile.route)
+        },
         onLogoutClick = {
             viewModel.onLogoutClick(
                 onComplete = {
@@ -80,6 +85,7 @@ fun AnalysisGraphScreenView(
 fun AnalysisGraphListView(
     state: AnalysisGraphState,
     onIdle: () -> Unit,
+    onProfileClick: () -> Unit,
     onLogoutClick: () -> Unit,
     onRefresh: () -> Unit,
     onSearchInput: (String) -> Unit,
@@ -123,16 +129,33 @@ fun AnalysisGraphListView(
                     fontWeight = FontWeight.Bold,
                 )
 
-                TextButton(
-                    colors = ButtonDefaults.buttonColors(Color.Transparent),
-                    onClick = {
-                        onLogoutClick()
-                    },
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_logout),
-                        contentDescription = null,
-                    )
+                    TextButton(
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        onClick = {
+                            onProfileClick()
+                        }
+                    ) {
+                        Icon(
+                            imageVector  = Icons.Filled.AccountCircle,
+                            contentDescription = null,
+                            modifier = Modifier.size(32.dp)
+                        )
+                    }
+
+                    TextButton(
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        onClick = {
+                            onLogoutClick()
+                        },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_logout),
+                            contentDescription = null,
+                        )
+                    }
                 }
             }
 

@@ -12,6 +12,7 @@ import ru.pyroman.medanalytica.application.MedanalyticaApplication
 import ru.pyroman.medanalytica.common.navigation.Navigation
 import ru.pyroman.medanalytica.common.navigation.ViewModelsRegistry
 import ru.pyroman.medanalytica.feature.login.viewmodel.LoginViewModel
+import ru.pyroman.medanalytica.feature.profile.viewmodel.ProfileViewModel
 import ru.pyroman.medanalytica.feature.register.viewmodel.RegisterViewModel
 import ru.pyroman.medanalytica.feature.start.viewmodel.StartViewModel
 import ru.pyroman.medanalytica.feature.viewmodel.AnalysisGraphViewModel
@@ -36,6 +37,9 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var startViewModel: StartViewModel
 
+    @Inject
+    lateinit var profileViewModel: ProfileViewModel
+
     private lateinit var activityComponent: MainActivityComponent
     override fun onCreate(savedInstanceState: Bundle?) {
         activityComponent = (applicationContext as MedanalyticaApplication)
@@ -59,6 +63,7 @@ class MainActivity : ComponentActivity() {
                            loginViewModel = loginViewModel,
                            registerViewModel= registerViewModel,
                            startViewModel = startViewModel,
+                           profileViewModel = profileViewModel,
                        )
                    )
                 }
